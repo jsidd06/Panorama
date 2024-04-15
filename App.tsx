@@ -1,11 +1,11 @@
 import React from 'react';
-import {HomeScreen} from '@/container';
 import {SafeAreaView, StyleSheet} from 'react-native';
+import StackRoutes from '@/routes/stack';
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.root}>
-      <HomeScreen />
+      <StackRoutes />
     </SafeAreaView>
   );
 }
