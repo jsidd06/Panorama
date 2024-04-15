@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {HeaderComp, LoadingComp} from '@/components';
+import {ErrorComp, HeaderComp, LoadingComp} from '@/components';
 import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import {setWeatherData} from '@/redux/featuresSlice/allDataSlice';
@@ -20,24 +20,20 @@ const WeatherScreen = () => {
       })
       .then((res: any) => {
         setLoading(false);
-        console.log('res', res.data);
         dispatch(setWeatherData(res.data));
         setLoading(false);
       })
       .catch((err: any) => {
         setLoading(false);
-        console.log('error', err.response);
-        setError(err.response.data);
+        setError(err.response.data.error);
       });
   }, [dispatch]);
   return (
     <>
-      {!loading ? (
+      {loading ? (
         <LoadingComp />
       ) : error ? (
-        <>
-          <Text>Error</Text>
-        </>
+        <ErrorComp message={error} />
       ) : (
         <>
           <View>
