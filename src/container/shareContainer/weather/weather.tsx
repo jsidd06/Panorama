@@ -1,10 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {HeaderComp} from '@/components';
 
 const WeatherScreen = () => {
   return (
     <View>
-      <Text>WeatherScreen</Text>
+      <HeaderComp title="Weather" />
     </View>
   );
 };
