@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {HeaderComp} from '@/components';
+import {HeaderComp, LoadingComp} from '@/components';
 import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import {setWeatherData} from '@/redux/featuresSlice/allDataSlice';
@@ -33,9 +33,7 @@ const WeatherScreen = () => {
   return (
     <>
       {!loading ? (
-        <>
-          <Text>loaing</Text>
-        </>
+        <LoadingComp />
       ) : error ? (
         <>
           <Text>Error</Text>
@@ -44,7 +42,7 @@ const WeatherScreen = () => {
         <>
           <View>
             <HeaderComp title="Weather" />
-            <Text>{weatherData.cloud_pct}</Text>
+            <Text>{weatherData?.cloud_pct}</Text>
           </View>
         </>
       )}
