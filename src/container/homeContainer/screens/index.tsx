@@ -1,14 +1,20 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text} from 'react-native';
 import React from 'react';
+import {IMAGES} from '@/themes/images';
+import {DefaultWrapper} from '@/components';
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text>HomeScreen</Text>
-    </View>
+    <DefaultWrapper>
+      <Text style={styles.buttonText}>Sign in with Facebook</Text>
+    </DefaultWrapper>
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+  },
+});
