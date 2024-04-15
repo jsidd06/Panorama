@@ -2,7 +2,7 @@ export const data = [
   {
     id: Math.random(),
     name: 'Weather',
-    link: '',
+    link: 'WeatherScreen',
   },
   {
     id: Math.random(),

@@ -1,15 +1,20 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {COLORS} from '@/themes/Colors';
 import {data} from '../res';
+import {useNavigation} from '@react-navigation/native';
 
 const HomeListFrag = () => {
+  const navigation = useNavigation();
   return (
     <View>
       {data.map((d: any) => (
-        <View key={d.id} style={styles.list}>
+        <Pressable
+          onPress={() => navigation.navigate(d.link as never)}
+          key={d.id}
+          style={styles.list}>
           <Text style={styles.test}>{d.name}</Text>
-        </View>
+        </Pressable>
       ))}
     </View>
   );
