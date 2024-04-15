@@ -1,17 +1,35 @@
-import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
-import React from 'react';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import React, {useState} from 'react';
 import {IMAGES} from '@/themes/images';
 import {DefaultWrapper} from '@/components';
 import {COLORS} from '@/themes/Colors';
+import HomeCardFrag from '../fragments/homeCardFrag';
+import HomeListFrag from '../fragments/homeListFrag';
 
 const HomeScreen = () => {
+  const [isChanged, setIsChanged] = useState(false);
+  const handleSubmit = () => {
+    setIsChanged(!isChanged);
+  };
   return (
     <DefaultWrapper style={styles.root}>
       <View style={styles.container}>
         <View style={styles.subContainer}>
           <Image source={IMAGES.logo} style={styles.img} />
           <Text style={styles.heading}>Panorama</Text>
-          <Image source={IMAGES.grid} style={styles.img} />
+          <Pressable onPress={handleSubmit}>
+            <Image
+              source={isChanged ? IMAGES.list : IMAGES.grid}
+              style={styles.img}
+            />
+          </Pressable>
         </View>
         <View style={styles.inputCtn}>
           <TextInput
@@ -20,6 +38,7 @@ const HomeScreen = () => {
             style={styles.input}
           />
         </View>
+        {isChanged ? <HomeCardFrag /> : <HomeListFrag />}
       </View>
     </DefaultWrapper>
   );
@@ -48,5 +67,13 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: COLORS.WHITE,
     fontWeight: '500',
+  },
+  list: {
+    height: 50,
+    backgroundColor: COLORS.LIGHT_BROWN,
+    justifyContent: 'center',
+    borderRadius: 8,
+    marginVertical: 10,
+    paddingHorizontal: 10,
   },
 });
