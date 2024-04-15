@@ -1,12 +1,16 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import StackRoutes from '@/routes/stack';
+import {Provider} from 'react-redux';
+import {store} from '@/redux/store';
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView style={styles.root}>
-      <StackRoutes />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={styles.root}>
+        <StackRoutes />
+      </SafeAreaView>
+    </Provider>
   );
 }
 
