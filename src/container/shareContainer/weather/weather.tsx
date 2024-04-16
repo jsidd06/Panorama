@@ -13,6 +13,9 @@ import {setWeatherData} from '@/redux/featuresSlice/allDataSlice';
 import {COLORS} from '@/themes/Colors';
 import {IMAGES} from '@/themes/images';
 import {fetchWeatherData} from '@/services';
+import moment from 'moment';
+
+// Assuming sunriseData and sunsetData are your timestamps
 
 const WeatherScreen = () => {
   const dispatch = useDispatch();
@@ -24,10 +27,10 @@ const WeatherScreen = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const data = await fetchWeatherData(search);
+      const item = await fetchWeatherData(search);
       setLoading(false);
       //console.log('res==>', data);
-      dispatch(setWeatherData(data));
+      dispatch(setWeatherData(item));
     } catch (err: any) {
       //console.log('err', err);
       setError(err);
@@ -42,6 +45,22 @@ const WeatherScreen = () => {
   const handleSubmit = () => {
     fetchData();
   };
+
+  const formattedSunrise = moment.unix(weatherData?.sunrise).format('HH:mm:ss');
+  const formattedSunset = moment.unix(weatherData?.sunset).format('HH:mm:ss');
+
+  const dataWeather = [
+    {id: Math.random(), name: 'Feels Like', value: weatherData?.feels_like},
+    {id: Math.random(), name: 'Humidity', value: weatherData?.humidity},
+    {id: Math.random(), name: 'Temperature', value: weatherData?.temp},
+    {id: Math.random(), name: 'Max Temperature', value: weatherData?.max_temp},
+    {id: Math.random(), name: 'Min Temperature', value: weatherData?.min_temp},
+    {id: Math.random(), name: 'Sunrise', value: formattedSunrise},
+    {id: Math.random(), name: 'Sunset', value: formattedSunset},
+    {id: Math.random(), name: 'Wind Degrees', value: weatherData?.wind_degrees},
+    {id: Math.random(), name: 'Wind Speed', value: weatherData?.wind_speed},
+    {id: Math.random(), name: 'Cloud Pct', value: weatherData?.cloud_pct},
+  ];
 
   return (
     <>
@@ -61,7 +80,7 @@ const WeatherScreen = () => {
             <View style={styles.subRoot}>
               <TextInput
                 style={styles.input}
-                placeholder="Search"
+                placeholder="Search..."
                 placeholderTextColor={COLORS.WHITE}
                 maxLength={30}
                 onChangeText={text => setSearch(text)}
@@ -78,48 +97,12 @@ const WeatherScreen = () => {
                 <Text style={styles.heading}>City Name</Text>
                 <Text style={styles.subHeading}>{search}</Text>
               </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Feels Like </Text>
-                <Text style={styles.subHeading}>{weatherData?.feels_like}</Text>
-              </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Humidity</Text>
-                <Text style={styles.subHeading}>{weatherData?.humidity}</Text>
-              </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Temperature</Text>
-                <Text style={styles.subHeading}>{weatherData?.temp}</Text>
-              </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Max Temperature</Text>
-                <Text style={styles.subHeading}>{weatherData?.max_temp}</Text>
-              </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Min Temperature</Text>
-                <Text style={styles.subHeading}>{weatherData?.min_temp}</Text>
-              </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Sunrise</Text>
-                <Text style={styles.subHeading}>{weatherData?.sunrise}</Text>
-              </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Sunset</Text>
-                <Text style={styles.subHeading}>{weatherData?.sunset}</Text>
-              </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Wind Degrees</Text>
-                <Text style={styles.subHeading}>
-                  {weatherData?.wind_degrees}
-                </Text>
-              </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Wind Speed</Text>
-                <Text style={styles.subHeading}>{weatherData?.wind_speed}</Text>
-              </View>
-              <View style={styles.subCard}>
-                <Text style={styles.heading}>Cloud Pct</Text>
-                <Text style={styles.subHeading}>{weatherData?.cloud_pct}</Text>
-              </View>
+              {dataWeather?.map((d: any) => (
+                <View key={d.id} style={styles.subCard}>
+                  <Text style={styles.heading}>{d.name}</Text>
+                  <Text style={styles.subHeading}>{d.value}</Text>
+                </View>
+              ))}
             </View>
           </View>
         </ImageBackground>
