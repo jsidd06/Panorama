@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Pressable,
   StyleSheet,
@@ -14,6 +15,7 @@ import {COLORS} from '@/themes/Colors';
 import {IMAGES} from '@/themes/images';
 import {fetchWeatherData} from '@/services';
 import {formattedTime} from '@/helper';
+import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 
 const WeatherScreen = () => {
   const dispatch = useDispatch();
@@ -73,12 +75,12 @@ const WeatherScreen = () => {
         <ImageBackground
           source={IMAGES.weather}
           resizeMode="cover"
-          style={styles.container}>
+          style={[Layout.fill]}>
           <View style={styles.header}>
             <HeaderComp title="Weather" white />
           </View>
           <View style={styles.root}>
-            <View style={styles.subRoot}>
+            <View style={[Layout.rowJCenter, styles.subRoot]}>
               <TextInput
                 style={styles.input}
                 placeholder="Search..."
@@ -94,12 +96,12 @@ const WeatherScreen = () => {
               </Pressable>
             </View>
             <View style={styles.card}>
-              <View style={styles.subCard}>
+              <View style={[Layout.rowJCenter, styles.subCard]}>
                 <Text style={styles.heading}>City Name</Text>
                 <Text style={styles.subHeading}>{search}</Text>
               </View>
               {dataWeather?.map((d: any) => (
-                <View key={d.id} style={styles.subCard}>
+                <View key={d.id} style={[Layout.rowJCenter, styles.subCard]}>
                   <Text style={styles.heading}>{d.name}</Text>
                   <Text style={styles.subHeading}>{d.value}</Text>
                 </View>
@@ -115,44 +117,36 @@ const WeatherScreen = () => {
 export default WeatherScreen;
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
-  header: {marginTop: 10},
-  root: {marginHorizontal: 15},
+  header: {marginTop: MetricsSizes.SMALL},
+  root: {marginHorizontal: MetricsSizes.MEDIUM},
   subRoot: {
     borderWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     borderRadius: 4,
-    paddingHorizontal: 10,
+    paddingHorizontal: MetricsSizes.SMALL,
     height: 50,
     borderColor: COLORS.WHITE,
-    marginVertical: 10,
+    marginVertical: MetricsSizes.SMALL,
   },
   searchImg: {width: 20, height: 20, resizeMode: 'contain'},
   heading: {
-    fontSize: 16,
+    fontSize: FontSize.md,
     color: COLORS.BLACK,
     fontWeight: '600',
   },
   input: {color: COLORS.WHITE, width: 200},
   subHeading: {
-    fontSize: 16,
+    fontSize: FontSize.md,
     color: COLORS.BROWN,
     fontWeight: '500',
   },
   card: {
-    backgroundColor: '#ccc',
-    marginVertical: 10,
-    justifyContent: 'center',
+    backgroundColor: COLORS.GREY,
+    marginVertical: MetricsSizes.SMALL,
     borderRadius: 8,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingHorizontal: MetricsSizes.MEDIUM,
+    paddingVertical: MetricsSizes.SMALL,
   },
   subCard: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 10,
+    paddingVertical: MetricsSizes.SMALL,
   },
 });

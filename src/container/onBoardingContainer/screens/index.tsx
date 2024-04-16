@@ -2,11 +2,13 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {IMAGES} from '@/themes/images';
 import {DefaultWrapper} from '@/components';
+import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {COLORS} from '@/themes/Colors';
 
 const OnBoardingScreen = () => {
   return (
-    <View style={styles.root}>
-      <DefaultWrapper style={styles.linearGradient}>
+    <View style={[Layout.fill]}>
+      <DefaultWrapper style={[Layout.fill, Layout.alignCenter]}>
         <Image source={IMAGES.logo} style={styles.img} />
         <Text style={styles.test}>Panorama</Text>
       </DefaultWrapper>
@@ -17,20 +19,11 @@ const OnBoardingScreen = () => {
 export default OnBoardingScreen;
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
-  linearGradient: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   test: {
-    color: '#fff',
-    fontSize: 22,
+    color: COLORS.WHITE,
+    fontSize: FontSize.lg,
     fontWeight: '600',
-    textAlign: 'center',
-    marginTop: 10,
+    marginTop: MetricsSizes.SMALL,
   },
   img: {width: 185, height: 191, resizeMode: 'contain'},
 });

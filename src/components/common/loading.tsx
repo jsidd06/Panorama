@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, Animated, Easing} from 'react-native';
 import {IMAGES} from '@/themes/images';
 import DefaultWrapper from './defaultWrapper';
 import {COLORS} from '@/themes/Colors';
+import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 
 const LoadingComp = () => {
   const [spinValue] = useState(new Animated.Value(0));
@@ -28,7 +30,7 @@ const LoadingComp = () => {
   });
 
   return (
-    <DefaultWrapper style={styles.container}>
+    <DefaultWrapper style={[Layout.fill, Layout.alignCenter]}>
       <Animated.Image
         source={IMAGES.logo}
         style={[styles.image, {transform: [{rotate: spin}]}]}
@@ -39,21 +41,16 @@ const LoadingComp = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   image: {
     width: 50,
     height: 50,
     resizeMode: 'contain',
   },
   heading: {
-    fontSize: 20,
+    fontSize: FontSize.lg,
     fontWeight: '400',
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: MetricsSizes.SMALL,
     color: COLORS.WHITE,
   },
 });
