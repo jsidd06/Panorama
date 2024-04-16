@@ -13,9 +13,7 @@ import {setWeatherData} from '@/redux/featuresSlice/allDataSlice';
 import {COLORS} from '@/themes/Colors';
 import {IMAGES} from '@/themes/images';
 import {fetchWeatherData} from '@/services';
-import moment from 'moment';
-
-// Assuming sunriseData and sunsetData are your timestamps
+import {formattedTime} from '@/helper';
 
 const WeatherScreen = () => {
   const dispatch = useDispatch();
@@ -29,10 +27,8 @@ const WeatherScreen = () => {
     try {
       const item = await fetchWeatherData(search);
       setLoading(false);
-      //console.log('res==>', data);
       dispatch(setWeatherData(item));
     } catch (err: any) {
-      //console.log('err', err);
       setError(err);
       setLoading(false);
     }
@@ -46,17 +42,22 @@ const WeatherScreen = () => {
     fetchData();
   };
 
-  const formattedSunrise = moment.unix(weatherData?.sunrise).format('HH:mm:ss');
-  const formattedSunset = moment.unix(weatherData?.sunset).format('HH:mm:ss');
-
   const dataWeather = [
     {id: Math.random(), name: 'Feels Like', value: weatherData?.feels_like},
     {id: Math.random(), name: 'Humidity', value: weatherData?.humidity},
     {id: Math.random(), name: 'Temperature', value: weatherData?.temp},
     {id: Math.random(), name: 'Max Temperature', value: weatherData?.max_temp},
     {id: Math.random(), name: 'Min Temperature', value: weatherData?.min_temp},
-    {id: Math.random(), name: 'Sunrise', value: formattedSunrise},
-    {id: Math.random(), name: 'Sunset', value: formattedSunset},
+    {
+      id: Math.random(),
+      name: 'Sunrise',
+      value: formattedTime(weatherData?.sunrise),
+    },
+    {
+      id: Math.random(),
+      name: 'Sunset',
+      value: formattedTime(weatherData?.sunset),
+    },
     {id: Math.random(), name: 'Wind Degrees', value: weatherData?.wind_degrees},
     {id: Math.random(), name: 'Wind Speed', value: weatherData?.wind_speed},
     {id: Math.random(), name: 'Cloud Pct', value: weatherData?.cloud_pct},
