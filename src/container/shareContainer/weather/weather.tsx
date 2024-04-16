@@ -6,6 +6,7 @@ import {
   TextInput,
   View,
   ImageBackground,
+  ScrollView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ErrorComp, HeaderComp, LoadingComp} from '@/components';
@@ -100,12 +101,14 @@ const WeatherScreen = () => {
                 <Text style={styles.heading}>City Name</Text>
                 <Text style={styles.subHeading}>{search}</Text>
               </View>
-              {dataWeather?.map((d: any) => (
-                <View key={d.id} style={[Layout.rowJCenter, styles.subCard]}>
-                  <Text style={styles.heading}>{d.name}</Text>
-                  <Text style={styles.subHeading}>{d.value}</Text>
-                </View>
-              ))}
+              <ScrollView showsVerticalScrollIndicator={false}>
+                {dataWeather?.map((d: any) => (
+                  <View key={d.id} style={[Layout.rowJCenter, styles.subCard]}>
+                    <Text style={styles.heading}>{d.name}</Text>
+                    <Text style={styles.subHeading}>{d.value}</Text>
+                  </View>
+                ))}
+              </ScrollView>
             </View>
           </View>
         </ImageBackground>
