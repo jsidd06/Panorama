@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {IMAGES} from '@/themes/images';
-import {DefaultWrapper} from '@/components';
+import {AnimatedLoader, DefaultWrapper} from '@/components';
 import {COLORS} from '@/themes/Colors';
 import HomeCardFrag from '../fragments/homeCardFrag';
 import HomeListFrag from '../fragments/homeListFrag';
@@ -23,7 +23,7 @@ const HomeScreen = () => {
     <DefaultWrapper style={[Layout.fill]}>
       <View style={[Layout.fill, styles.container]}>
         <View style={[Layout.rowJCenter]}>
-          <Image source={IMAGES.logo} style={styles.img} />
+          <AnimatedLoader noLayout={true} imgStyle={styles.img} />
           <Text style={styles.heading}>Panorama</Text>
           <Pressable onPress={handleSubmit}>
             <Image
