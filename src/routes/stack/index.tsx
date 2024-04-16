@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen, WeatherScreen} from '@/container';
+import {HomeScreen, WeatherScreen, OnBoardingScreen} from '@/container';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,11 +19,11 @@ function StackRoutes() {
           component={WeatherScreen}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="OnBoardingScreen"
           component={OnBoardingScreen}
           options={{headerShown: false}}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
