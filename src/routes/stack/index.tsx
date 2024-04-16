@@ -8,7 +8,9 @@ const Stack = createNativeStackNavigator();
 function StackRoutes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator
+        initialRouteName="HomeScreen"
+        screenOptions={{animation: 'flip'}}>
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}

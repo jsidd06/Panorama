@@ -17,5 +17,5 @@ const OnBoardingScreen = () => {
 export default OnBoardingScreen;
 
 const styles = StyleSheet.create({
-  img: {width: 120, height: 120, resizeMode: 'contain'},
+  img: {width: 100, height: 100, resizeMode: 'contain'},
 });

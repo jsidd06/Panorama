@@ -7,6 +7,7 @@ import {OnBoardingScreen} from '@/container';
 
 function App(): React.JSX.Element {
   const [splash, setSplash] = useState(true);
+
   useEffect(() => {
     let timer = setTimeout(() => {
       setSplash(false);
