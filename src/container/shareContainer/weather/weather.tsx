@@ -6,13 +6,13 @@ import {
   View,
   ImageBackground,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ErrorComp, HeaderComp, LoadingComp} from '@/components';
-import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import {setWeatherData} from '@/redux/featuresSlice/allDataSlice';
 import {COLORS} from '@/themes/Colors';
 import {IMAGES} from '@/themes/images';
+import {fetchWeatherData} from '@/services';
 
 const WeatherScreen = () => {
   const dispatch = useDispatch();
@@ -24,21 +24,20 @@ const WeatherScreen = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        `https://api.api-ninjas.com/v1/weather?city=${search}`,
-        {
-          headers: {
-            'X-Api-Key': '9Dbd2Jht3NoqZMIi1ls9SA==FqzvbtzFotW8lmhZ',
-          },
-        },
-      );
+      const data = await fetchWeatherData(search);
       setLoading(false);
-      dispatch(setWeatherData(response.data));
+      //console.log('res==>', data);
+      dispatch(setWeatherData(data));
     } catch (err: any) {
+      //console.log('err', err);
+      setError(err);
       setLoading(false);
-      setError(err?.response.data.error);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSubmit = () => {
     fetchData();
