@@ -1,81 +1,49 @@
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  ImageBackground,
+} from 'react-native';
+import React, {useState} from 'react';
 import {ErrorComp, HeaderComp, LoadingComp} from '@/components';
 import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import {setWeatherData} from '@/redux/featuresSlice/allDataSlice';
-import Geolocation from '@react-native-community/geolocation';
-import {request, PERMISSIONS} from 'react-native-permissions';
+import {COLORS} from '@/themes/Colors';
+import {IMAGES} from '@/themes/images';
 
 const WeatherScreen = () => {
   const dispatch = useDispatch();
-  const weatherData = useSelector((state: any) => state.weather.weather);
+  const weatherData = useSelector((state: any) => state?.weather?.weather);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [latLocation, setLatLocation] = useState('');
-  const [lonLocation, setLonLocation] = useState('');
-  console.log('weather data', weatherData);
+  const [search, setSearch] = useState('Delhi');
 
-  useEffect(() => {
-    requestLocationPermission();
-  }, []);
-  const requestLocationPermission = async () => {
-    try {
-      const granted = await request(
-        Platform.OS === 'ios'
-          ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
-          : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-      );
-      if (granted === 'granted') {
-        console.log('Location permission granted');
-        getUserLocation();
-      } else {
-        console.log('Location permission denied');
-      }
-    } catch (err) {
-      console.log('Error requesting location permission:', err);
-    }
-  };
-
-  const getUserLocation = () => {
-    Geolocation.getCurrentPosition(
-      position => {
-        const {latitude, longitude}: any = position.coords;
-        //console.log('User location:', {latitude, longitude});
-        setLatLocation(latitude);
-        setLonLocation(longitude);
-      },
-      (err: any) => {
-        console.log('Error getting location:', err);
-      },
-      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
-    );
-  };
-  useEffect(() => {
+  const fetchData = async () => {
     setLoading(true);
-    if (latLocation && lonLocation) {
-      axios
-        .get(
-          `https://api.api-ninjas.com/v1/weather?lat=${latLocation}&lon=${lonLocation}`,
-          {
-            headers: {
-              'X-Api-Key': '9Dbd2Jht3NoqZMIi1ls9SA==FqzvbtzFotW8lmhZ',
-            },
+    try {
+      const response = await axios.get(
+        `https://api.api-ninjas.com/v1/weather?city=${search}`,
+        {
+          headers: {
+            'X-Api-Key': '9Dbd2Jht3NoqZMIi1ls9SA==FqzvbtzFotW8lmhZ',
           },
-        )
-        .then((res: any) => {
-          //console.log('res', res.data);
-          setLoading(false);
-          dispatch(setWeatherData(res.data));
-          setLoading(false);
-        })
-        .catch((err: any) => {
-          //console.log('error', err.response);
-          setLoading(false);
-          setError(err.response.data.error);
-        });
+        },
+      );
+      setLoading(false);
+      dispatch(setWeatherData(response.data));
+    } catch (err: any) {
+      setLoading(false);
+      setError(err?.response.data.error);
     }
-  }, [dispatch, latLocation, lonLocation]);
+  };
+
+  const handleSubmit = () => {
+    fetchData();
+  };
+
   return (
     <>
       {loading ? (
@@ -83,10 +51,79 @@ const WeatherScreen = () => {
       ) : error ? (
         <ErrorComp message={error} />
       ) : (
-        <View>
-          <HeaderComp title="Weather" />
-          <Text>{weatherData?.feels_like}</Text>
-        </View>
+        <ImageBackground
+          source={IMAGES.weather}
+          resizeMode="cover"
+          style={styles.container}>
+          <View style={styles.header}>
+            <HeaderComp title="Weather" white />
+          </View>
+          <View style={styles.root}>
+            <View style={styles.subRoot}>
+              <TextInput
+                style={styles.input}
+                placeholder="Search"
+                placeholderTextColor={COLORS.WHITE}
+                maxLength={30}
+                onChangeText={text => setSearch(text)}
+                value={search}
+              />
+              <Pressable onPress={handleSubmit}>
+                <Text style={[styles.heading, {color: COLORS.WHITE}]}>
+                  Search
+                </Text>
+              </Pressable>
+            </View>
+            <View style={styles.card}>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>City Name</Text>
+                <Text style={styles.subHeading}>{search}</Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Feels Like </Text>
+                <Text style={styles.subHeading}>{weatherData?.feels_like}</Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Humidity</Text>
+                <Text style={styles.subHeading}>{weatherData?.humidity}</Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Temperature</Text>
+                <Text style={styles.subHeading}>{weatherData?.temp}</Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Max Temperature</Text>
+                <Text style={styles.subHeading}>{weatherData?.max_temp}</Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Min Temperature</Text>
+                <Text style={styles.subHeading}>{weatherData?.min_temp}</Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Sunrise</Text>
+                <Text style={styles.subHeading}>{weatherData?.sunrise}</Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Sunset</Text>
+                <Text style={styles.subHeading}>{weatherData?.sunset}</Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Wind Degrees</Text>
+                <Text style={styles.subHeading}>
+                  {weatherData?.wind_degrees}
+                </Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Wind Speed</Text>
+                <Text style={styles.subHeading}>{weatherData?.wind_speed}</Text>
+              </View>
+              <View style={styles.subCard}>
+                <Text style={styles.heading}>Cloud Pct</Text>
+                <Text style={styles.subHeading}>{weatherData?.cloud_pct}</Text>
+              </View>
+            </View>
+          </View>
+        </ImageBackground>
       )}
     </>
   );
@@ -94,4 +131,45 @@ const WeatherScreen = () => {
 
 export default WeatherScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {flex: 1},
+  header: {marginTop: 10},
+  root: {marginHorizontal: 15},
+  subRoot: {
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: 4,
+    paddingHorizontal: 10,
+    height: 50,
+    borderColor: COLORS.WHITE,
+    marginVertical: 10,
+  },
+  searchImg: {width: 20, height: 20, resizeMode: 'contain'},
+  heading: {
+    fontSize: 16,
+    color: COLORS.BLACK,
+    fontWeight: '600',
+  },
+  input: {color: COLORS.WHITE, width: 200},
+  subHeading: {
+    fontSize: 16,
+    color: COLORS.BROWN,
+    fontWeight: '500',
+  },
+  card: {
+    backgroundColor: '#ccc',
+    marginVertical: 10,
+    justifyContent: 'center',
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  },
+  subCard: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+  },
+});
