@@ -12,11 +12,13 @@ const WeatherScreen = () => {
   const weatherData = useSelector((state: any) => state.weather.weather);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [latLocation, setLatLocation] = useState('');
+  const [lonLocation, setLonLocation] = useState('');
+  console.log('weather data', weatherData);
 
   useEffect(() => {
     requestLocationPermission();
   }, []);
-
   const requestLocationPermission = async () => {
     try {
       const granted = await request(
@@ -26,48 +28,54 @@ const WeatherScreen = () => {
       );
       if (granted === 'granted') {
         console.log('Location permission granted');
-        // Now you can get the user's location
         getUserLocation();
       } else {
         console.log('Location permission denied');
       }
-    } catch (error) {
-      console.warn('Error requesting location permission:', error);
+    } catch (err) {
+      console.log('Error requesting location permission:', err);
     }
   };
 
   const getUserLocation = () => {
     Geolocation.getCurrentPosition(
       position => {
-        const {latitude, longitude} = position.coords;
-        console.log('User location:', {latitude, longitude});
-        // Do something with the user's location data
+        const {latitude, longitude}: any = position.coords;
+        //console.log('User location:', {latitude, longitude});
+        setLatLocation(latitude);
+        setLonLocation(longitude);
       },
-      error => {
-        console.warn('Error getting location:', error);
+      (err: any) => {
+        console.log('Error getting location:', err);
       },
       {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
     );
   };
-
   useEffect(() => {
     setLoading(true);
-    axios
-      .get('https://api.api-ninjas.com/v1/weather?city=London', {
-        headers: {
-          'X-Api-Key': '9Dbd2Jht3NoqZMIi1ls9SA==FqzvbtzFotW8lmhZ',
-        },
-      })
-      .then((res: any) => {
-        setLoading(false);
-        dispatch(setWeatherData(res.data));
-        setLoading(false);
-      })
-      .catch((err: any) => {
-        setLoading(false);
-        setError(err.response.data.error);
-      });
-  }, [dispatch]);
+    if (latLocation && lonLocation) {
+      axios
+        .get(
+          `https://api.api-ninjas.com/v1/weather?lat=${latLocation}&lon=${lonLocation}`,
+          {
+            headers: {
+              'X-Api-Key': '9Dbd2Jht3NoqZMIi1ls9SA==FqzvbtzFotW8lmhZ',
+            },
+          },
+        )
+        .then((res: any) => {
+          //console.log('res', res.data);
+          setLoading(false);
+          dispatch(setWeatherData(res.data));
+          setLoading(false);
+        })
+        .catch((err: any) => {
+          //console.log('error', err.response);
+          setLoading(false);
+          setError(err.response.data.error);
+        });
+    }
+  }, [dispatch, latLocation, lonLocation]);
   return (
     <>
       {loading ? (
@@ -75,12 +83,10 @@ const WeatherScreen = () => {
       ) : error ? (
         <ErrorComp message={error} />
       ) : (
-        <>
-          <View>
-            <HeaderComp title="Weather" />
-            <Text>{weatherData?.cloud_pct}</Text>
-          </View>
-        </>
+        <View>
+          <HeaderComp title="Weather" />
+          <Text>{weatherData?.feels_like}</Text>
+        </View>
       )}
     </>
   );
