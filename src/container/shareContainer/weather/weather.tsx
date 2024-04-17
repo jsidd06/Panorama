@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
     borderColor: COLORS.WHITE,
     marginVertical: MetricsSizes.SMALL,
   },
-  searchImg: {width: 20, height: 20, resizeMode: 'contain'},
   heading: {
     fontSize: FontSize.md,
     color: COLORS.BLACK,

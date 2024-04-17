@@ -23,7 +23,9 @@ const HeaderComp = ({title, white}: HeaderCompProps) => {
     </>
   ) : (
     <>
-      <Pressable onPress={() => navigation.goBack()} style={[styles.root]}>
+      <Pressable
+        onPress={() => navigation.goBack()}
+        style={[styles.root, Layout.rowACenter]}>
         <Image source={IMAGES.leftArrow} style={styles.img} />
         <Text style={styles.heading}>{title}</Text>
       </Pressable>
