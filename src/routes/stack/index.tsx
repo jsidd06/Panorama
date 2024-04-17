@@ -5,7 +5,7 @@ import {
   HomeScreen,
   WeatherScreen,
   OnBoardingScreen,
-  AnimalScreen,
+  DogsScreen,
 } from '@/container';
 
 const Stack = createNativeStackNavigator();
@@ -32,8 +32,8 @@ function StackRoutes() {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="AnimalScreen"
-          component={AnimalScreen}
+          name="DogsScreen"
+          component={DogsScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

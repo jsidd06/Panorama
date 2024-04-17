@@ -6,8 +6,8 @@ export const data = [
   },
   {
     id: Math.random(),
-    name: 'Animal',
-    link: 'AnimalScreen',
+    name: 'Dogs',
+    link: 'DogsScreen',
   },
   {
     id: Math.random(),

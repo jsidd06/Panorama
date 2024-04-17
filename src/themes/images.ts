@@ -7,4 +7,5 @@ export const IMAGES = {
   weather: require('@/assets/images/weather.jpg'),
   leftArrowW: require('@/assets/images/w-Left-Arrow.png'),
   searchW: require('@/assets/images/w-Search.png'),
+  dogs: require('@/assets/images/dogs.jpg'),
 };
