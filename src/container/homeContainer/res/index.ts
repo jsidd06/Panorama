@@ -11,7 +11,7 @@ export const data = [
   },
   {
     id: Math.random(),
-    name: 'AirCraft',
-    link: '',
+    name: 'Baby Names',
+    link: 'BabyNamesScreen',
   },
 ];
