@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   search: {
     borderWidth: 1,
-    height: 40,
+    height: 50,
     color: COLORS.BLACK,
     borderColor: COLORS.WHITE,
   },
@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: COLORS.GREY,
     borderRadius: 8,
-    marginBottom: MetricsSizes.HEIGHT_SMALL,
+    marginTop: MetricsSizes.MEDIUM,
+    marginBottom: 100,
   },
   heading: {
     fontSize: FontSize.md,
