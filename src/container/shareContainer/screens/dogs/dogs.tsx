@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Image,
   ImageBackground,
@@ -35,7 +36,6 @@ const DogsScreen = () => {
     } catch (err: any) {
       setLoading(false);
       setError(err);
-      console.log('err', err);
     }
   };
   return loading ? (
@@ -43,7 +43,7 @@ const DogsScreen = () => {
   ) : error ? (
     <ErrorComp message={error} />
   ) : (
-    <ImageBackground source={IMAGES.dogs} style={[Layout.fillB]}>
+    <ImageBackground source={IMAGES.dogs} style={[Layout.fill]}>
       <HeaderComp title="Dogs" white />
       <View style={styles.root}>
         <SearchComp
@@ -62,7 +62,7 @@ const DogsScreen = () => {
               </View>
               {Object.entries(item)
                 .reverse()
-                .map(([key, value]) => {
+                .map(([key, value]: any) => {
                   if (key !== 'image_link') {
                     return (
                       <View

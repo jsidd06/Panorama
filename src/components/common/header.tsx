@@ -38,6 +38,7 @@ export default HeaderComp;
 const styles = StyleSheet.create({
   root: {
     marginHorizontal: MetricsSizes.MEDIUM,
+    marginTop: MetricsSizes.SMALL,
   },
   img: {
     width: 30,

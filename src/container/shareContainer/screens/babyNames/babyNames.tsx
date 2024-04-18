@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Image,
   ImageBackground,
@@ -30,13 +31,11 @@ const BabyNamesScreen = () => {
   const fetchData = async () => {
     try {
       const data = await fetchBabyNamesData(search);
-      console.log('data', data);
       setLoading(false);
       dispatch(setBabyName(data));
     } catch (err: any) {
       setLoading(false);
       setError(err);
-      console.log(err);
     }
   };
   return loading ? (
@@ -44,9 +43,7 @@ const BabyNamesScreen = () => {
   ) : error ? (
     <ErrorComp message={error} />
   ) : (
-    <ImageBackground
-      source={IMAGES.babyNames}
-      style={[Layout.fill, styles.root]}>
+    <ImageBackground source={IMAGES.babyNames} style={[Layout.fill]}>
       <HeaderComp white title="Baby Names" />
       <ScrollView>
         <View style={{marginHorizontal: MetricsSizes.MEDIUM}}>
