@@ -17,7 +17,7 @@ import {IMAGES} from '@/themes/images';
 
 const DogsScreen = () => {
   const dispatch = useDispatch();
-  const store = useSelector((state: any) => state.weather.dogs);
+  const store = useSelector((state: any) => state.data.dogs);
   const [search, setSearch] = useState('golden retriever');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

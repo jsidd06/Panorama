@@ -148,4 +148,7 @@ export const Layout = {
     display: 'flex' as 'flex',
     justifyContent: 'space-between' as 'space-between',
   },
+  flexEndA: {
+    alignItems: 'flex-end' as 'flex-end',
+  },
 };

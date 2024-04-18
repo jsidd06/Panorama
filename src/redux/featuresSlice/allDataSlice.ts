@@ -3,11 +3,13 @@ import {createSlice} from '@reduxjs/toolkit';
 export interface CounterState {
   weather: any;
   dogs: any;
+  babyNames: any;
 }
 
 const initialState: CounterState = {
   weather: null,
   dogs: null,
+  babyNames: null,
 };
 
 export const AllSliceCounter = createSlice({
@@ -20,9 +22,13 @@ export const AllSliceCounter = createSlice({
     setDogsData: (state, action) => {
       state.dogs = action.payload;
     },
+    setBabyName: (state, action) => {
+      state.babyNames = action.payload;
+    },
   },
 });
 
-export const {setWeatherData, setDogsData} = AllSliceCounter.actions;
+export const {setWeatherData, setDogsData, setBabyName} =
+  AllSliceCounter.actions;
 
 export default AllSliceCounter.reducer;

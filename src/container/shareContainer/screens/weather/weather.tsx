@@ -20,7 +20,7 @@ import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 
 const WeatherScreen = () => {
   const dispatch = useDispatch();
-  const weatherData = useSelector((state: any) => state?.weather?.weather);
+  const weatherData = useSelector((state: any) => state?.data?.weather);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [search, setSearch] = useState('Delhi');

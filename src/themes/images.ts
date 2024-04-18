@@ -8,4 +8,7 @@ export const IMAGES = {
   leftArrowW: require('@/assets/images/w-Left-Arrow.png'),
   searchW: require('@/assets/images/w-Search.png'),
   dogs: require('@/assets/images/dogs.jpg'),
+  babyNames: require('@/assets/images/baby-names.jpg'),
+  refreshB: require('@/assets/images/BReplay.png'),
+  refresh: require('@/assets/images/refresh.png'),
 };

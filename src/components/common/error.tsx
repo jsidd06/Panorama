@@ -1,17 +1,24 @@
-import {StyleSheet, Text} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import DefaultWrapper from './defaultWrapper';
 import {COLORS} from '@/themes/Colors';
 import {FontSize, Layout} from '@/themes/style';
+import {useNavigation} from '@react-navigation/native';
 
 type ErrorCompProps = {
   message: string;
 };
 
 const ErrorComp = ({message}: ErrorCompProps) => {
+  const navigation = useNavigation();
   return (
     <DefaultWrapper style={[Layout.fill, Layout.rowACenter]}>
-      <Text style={styles.heading}>{message}</Text>
+      <View style={[Layout.alignCenter]}>
+        <Text style={styles.heading}>{message}</Text>
+        <Pressable onPress={() => navigation.goBack()}>
+          <Text style={[styles.heading, {color: COLORS.BLUE}]}> Go Back</Text>
+        </Pressable>
+      </View>
     </DefaultWrapper>
   );
 };
@@ -24,5 +31,6 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
     fontWeight: '500',
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
 });

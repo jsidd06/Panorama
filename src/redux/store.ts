@@ -3,7 +3,7 @@ import weatherSlice from './featuresSlice/allDataSlice';
 
 export const store = configureStore({
   reducer: {
-    weather: weatherSlice,
+    data: weatherSlice,
   },
 });
 

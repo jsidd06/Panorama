@@ -17,3 +17,12 @@ export const fetchDogsData = async (search: string) => {
     throw err.response.data.error;
   }
 };
+
+export const fetchBabyNamesData = async (search: string) => {
+  try {
+    const response = await Axios.get(`babynames?gender=${search}`);
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data.error;
+  }
+};
