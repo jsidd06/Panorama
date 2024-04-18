@@ -12,7 +12,7 @@ type ErrorCompProps = {
 const ErrorComp = ({message}: ErrorCompProps) => {
   const navigation = useNavigation();
   return (
-    <DefaultWrapper style={[Layout.fill, Layout.rowACenter]}>
+    <DefaultWrapper style={[Layout.fill, Layout.alignCenter]}>
       <View style={[Layout.alignCenter]}>
         <Text style={styles.heading}>{message}</Text>
         <Pressable onPress={() => navigation.goBack()}>
