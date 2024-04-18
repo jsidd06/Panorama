@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
+  Alert,
   Image,
   ImageBackground,
   ScrollView,
@@ -38,6 +39,16 @@ const DogsScreen = () => {
       setError(err);
     }
   };
+
+  const handleSubmit = () => {
+    if (!search.trim()) {
+      Alert.alert('Please enter a valid search');
+    } else {
+      setError('');
+      fetchData();
+    }
+  };
+
   return loading ? (
     <LoadingComp />
   ) : error ? (
@@ -52,7 +63,7 @@ const DogsScreen = () => {
           inputStyle={styles.input}
           onChangeText={(text: string) => setSearch(text)}
           value={search}
-          onPress={fetchData}
+          onPress={handleSubmit}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
           {store?.map((item: any, index: number) => (

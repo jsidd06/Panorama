@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
+  Alert,
   Image,
   ImageBackground,
   Pressable,
@@ -38,6 +39,15 @@ const BabyNamesScreen = () => {
       setError(err);
     }
   };
+  const handleSubmit = () => {
+    if (!search.trim()) {
+      Alert.alert('Please enter a valid search');
+    } else {
+      setError('');
+      fetchData();
+    }
+  };
+
   return loading ? (
     <LoadingComp />
   ) : error ? (
@@ -53,11 +63,11 @@ const BabyNamesScreen = () => {
             inputStyle={styles.input}
             onChangeText={(text: string) => setSearch(text)}
             value={search}
-            onPress={fetchData}
+            onPress={handleSubmit}
           />
           <Pressable
             style={[Layout.flexEndA, {marginBottom: MetricsSizes.SMALL}]}
-            onPress={fetchData}>
+            onPress={handleSubmit}>
             <Image style={styles.refresh} source={IMAGES.refresh} />
           </Pressable>
           <View style={styles.content}>

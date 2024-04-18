@@ -7,6 +7,7 @@ import {
   View,
   ImageBackground,
   ScrollView,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ErrorComp, HeaderComp, LoadingComp} from '@/components';
@@ -42,7 +43,12 @@ const WeatherScreen = () => {
   }, []);
 
   const handleSubmit = () => {
-    fetchData();
+    if (!search.trim()) {
+      Alert.alert('Please enter a valid search');
+    } else {
+      setError('');
+      fetchData();
+    }
   };
 
   const dataWeather = [
