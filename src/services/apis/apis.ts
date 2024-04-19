@@ -26,3 +26,12 @@ export const fetchBabyNamesData = async (search: string) => {
     throw error.response.data.error;
   }
 };
+
+export const fetchPlantsData = async (search: string) => {
+  try {
+    const response = await Axios.get(`planets?name=${search}`);
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data.error;
+  }
+};

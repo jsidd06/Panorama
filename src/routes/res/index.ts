@@ -26,4 +26,9 @@ export const routes = [
     name: 'BabyNamesScreen',
     component: ROUTES.BabyNamesScreen,
   },
+  {
+    id: Math.random(),
+    name: 'PlantsScreen',
+    component: ROUTES.PlantsScreen,
+  },
 ];

@@ -14,4 +14,9 @@ export const data = [
     name: 'Baby Names',
     link: 'BabyNamesScreen',
   },
+  {
+    id: Math.random(),
+    name: 'Plants',
+    link: 'PlantsScreen',
+  },
 ];

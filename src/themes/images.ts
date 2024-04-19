@@ -11,4 +11,5 @@ export const IMAGES = {
   babyNames: require('@/assets/images/baby-names.jpg'),
   refreshB: require('@/assets/images/BReplay.png'),
   refresh: require('@/assets/images/refresh.png'),
+  plants: require('@/assets/images/plants.jpg'),
 };

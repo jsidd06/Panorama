@@ -3,3 +3,4 @@ export {default as WeatherScreen} from '@/container/shareContainer/screens/weath
 export {default as OnBoardingScreen} from '@/container/onBoardingContainer/screens/index';
 export {default as DogsScreen} from '@/container/shareContainer/screens/dogs/dogs';
 export {default as BabyNamesScreen} from '@/container/shareContainer/screens/babyNames/babyNames';
+export {default as PlantsScreen} from '@/container/shareContainer/screens/plants/plants';
