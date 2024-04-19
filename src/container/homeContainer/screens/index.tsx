@@ -6,19 +6,29 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {IMAGES} from '@/themes/images';
 import {AnimatedLoader, DefaultWrapper} from '@/components';
 import {COLORS} from '@/themes/Colors';
 import HomeCardFrag from '../fragments/homeCardFrag';
 import HomeListFrag from '../fragments/homeListFrag';
 import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {data} from '../res';
 
 const HomeScreen = () => {
   const [isChanged, setIsChanged] = useState(false);
+  const [search, setSearch] = useState('');
+  const [filterData, setFilterData] = useState([]);
   const handleSubmit = () => {
     setIsChanged(!isChanged);
   };
+
+  useEffect(() => {
+    const filtered: any = data.filter(item =>
+      item.name.toLowerCase().includes(search.toLowerCase()),
+    );
+    setFilterData(filtered);
+  }, [search]);
   return (
     <DefaultWrapper style={[Layout.fill]}>
       <View style={[Layout.fill, styles.container]}>
@@ -37,9 +47,15 @@ const HomeScreen = () => {
             placeholder="Search.."
             placeholderTextColor={COLORS.BROWN}
             style={styles.input}
+            onChangeText={(text: any) => setSearch(text)}
+            value={search}
           />
         </View>
-        {isChanged ? <HomeCardFrag /> : <HomeListFrag />}
+        {isChanged ? (
+          <HomeCardFrag data={filterData} />
+        ) : (
+          <HomeListFrag data={filterData} />
+        )}
       </View>
     </DefaultWrapper>
   );

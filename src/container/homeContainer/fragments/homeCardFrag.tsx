@@ -1,11 +1,14 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {COLORS} from '@/themes/Colors';
-import {data} from '../res';
 import {useNavigation} from '@react-navigation/native';
 import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 
-const HomeCardFrag = () => {
+type HomeCardFragProps = {
+  data: any;
+};
+
+const HomeCardFrag = ({data}: HomeCardFragProps) => {
   const navigation = useNavigation();
   return (
     <View style={[Layout.wrapB]}>

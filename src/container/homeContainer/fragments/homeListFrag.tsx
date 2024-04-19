@@ -1,11 +1,14 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {COLORS} from '@/themes/Colors';
-import {data} from '../res';
 import {useNavigation} from '@react-navigation/native';
 import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 
-const HomeListFrag = () => {
+type HomeListFragProps = {
+  data?: any;
+};
+
+const HomeListFrag = ({data}: HomeListFragProps) => {
   const navigation = useNavigation();
   return (
     <View>
