@@ -1,16 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  Alert,
-  ImageBackground,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Alert, ImageBackground, StyleSheet, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {ErrorComp, HeaderComp, LoadingComp, SearchComp} from '@/components';
+import {
+  CardComp,
+  ErrorComp,
+  HeaderComp,
+  LoadingComp,
+  SearchComp,
+} from '@/components';
 import {IMAGES} from '@/themes/images';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {Layout, MetricsSizes} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchPlantsData} from '@/services/apis/apis';
@@ -20,7 +19,7 @@ const PlantsScreen = () => {
   const dispatch = useDispatch();
   const store = useSelector((state: any) => state.data.plants);
   console.log('store', store);
-  const [search, setSearch] = useState('golden retriever');
+  const [search, setSearch] = useState('neptune');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -113,16 +112,10 @@ const PlantsScreen = () => {
           value={search}
           onPress={handleSubmit}
         />
-        <View style={styles.card}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            {plants?.map((d: any, index: number) => (
-              <View key={index} style={[Layout.rowJCenter, styles.subCard]}>
-                <Text style={styles.heading}>{d.name}</Text>
-                <Text style={styles.subHeading}>{d.value}</Text>
-              </View>
-            ))}
-          </ScrollView>
-        </View>
+        <CardComp
+          data={plants}
+          cardStyle={{backgroundColor: COLORS.LIGHT_GREEN}}
+        />
       </View>
     </ImageBackground>
   );
@@ -140,27 +133,5 @@ const styles = StyleSheet.create({
   input: {height: 40, color: COLORS.WHITE},
   root: {
     marginHorizontal: MetricsSizes.MEDIUM,
-  },
-  card: {
-    backgroundColor: COLORS.GREY,
-    marginVertical: MetricsSizes.SMALL,
-    borderRadius: 8,
-    paddingHorizontal: MetricsSizes.MEDIUM,
-    paddingVertical: MetricsSizes.SMALL,
-  },
-  subCard: {
-    paddingVertical: MetricsSizes.SMALL,
-    borderRadius: 8,
-  },
-  heading: {
-    fontSize: FontSize.md,
-    color: COLORS.BLACK,
-    fontWeight: '500',
-    textTransform: 'capitalize',
-  },
-  subHeading: {
-    fontSize: FontSize.md,
-    color: COLORS.BROWN,
-    fontWeight: '400',
   },
 });
