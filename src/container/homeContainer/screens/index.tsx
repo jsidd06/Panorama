@@ -1,6 +1,7 @@
 import {
   Image,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -51,11 +52,13 @@ const HomeScreen = () => {
             value={search}
           />
         </View>
-        {isChanged ? (
-          <HomeCardFrag data={filterData} />
-        ) : (
-          <HomeListFrag data={filterData} />
-        )}
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {isChanged ? (
+            <HomeCardFrag data={filterData} />
+          ) : (
+            <HomeListFrag data={filterData} />
+          )}
+        </ScrollView>
       </View>
     </DefaultWrapper>
   );
