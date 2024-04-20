@@ -55,7 +55,7 @@ const RecipesScreen = () => {
     <ErrorComp message={error} />
   ) : (
     <ImageBackground source={IMAGES.recipes} style={[Layout.fill]}>
-      <HeaderComp title="Plants" white />
+      <HeaderComp title="Recipes" white />
       <View style={[styles.root, Layout.fill]}>
         <SearchComp
           rootStyle={styles.search}
@@ -72,19 +72,25 @@ const RecipesScreen = () => {
                 <Card.Title>{item.title}</Card.Title>
                 <ListItem>
                   <ListItem.Content>
-                    <ListItem.Subtitle>Ingredients:</ListItem.Subtitle>
+                    <ListItem.Subtitle style={styles.subHeading}>
+                      Ingredients:
+                    </ListItem.Subtitle>
                     <Text>{item.ingredients}</Text>
                   </ListItem.Content>
                 </ListItem>
                 <ListItem>
                   <ListItem.Content>
-                    <ListItem.Subtitle>Instructions:</ListItem.Subtitle>
+                    <ListItem.Subtitle style={styles.subHeading}>
+                      Instructions:
+                    </ListItem.Subtitle>
                     <Text>{item.instructions}</Text>
                   </ListItem.Content>
                 </ListItem>
                 <ListItem>
                   <ListItem.Content>
-                    <ListItem.Subtitle>Servings:</ListItem.Subtitle>
+                    <ListItem.Subtitle style={styles.subHeading}>
+                      Servings:
+                    </ListItem.Subtitle>
                     <Text>{item.servings}</Text>
                   </ListItem.Content>
                 </ListItem>
@@ -112,5 +118,8 @@ const styles = StyleSheet.create({
   },
   subRoot: {
     backgroundColor: COLORS.GREY,
+  },
+  subHeading: {
+    fontWeight: '600',
   },
 });
