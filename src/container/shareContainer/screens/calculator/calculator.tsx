@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {HeaderComp} from '@/components';
 import {FontSize, Layout} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
+import {evaluate} from 'mathjs';
 
 const data = [
   ['1', '2', '3', '+'],
@@ -12,17 +13,33 @@ const data = [
 ];
 
 const CalculatorScreen = () => {
-  const [showNum, setShowNum] = useState(null);
-  const handleSubmit = (text: string) => {
-    console.log('check', text);
-    setShowNum(text);
+  const [showNum, setShowNum] = useState('');
+  const [result, setResult] = useState('');
+
+  const handleSubmit = (input: string) => {
+    if (input === '=') {
+      try {
+        const evalResult = evaluate(showNum);
+        setResult(evalResult.toString());
+        setShowNum('');
+      } catch (error) {
+        setResult('Error: invalid input');
+      }
+    } else if (input === 'C') {
+      setShowNum('');
+      setResult('');
+    } else {
+      setShowNum(showNum + input);
+    }
   };
   return (
     <View style={[Layout.fill, styles.main]}>
       <HeaderComp title="Calculator" white />
       <View style={styles.root}>
         <View style={styles.container}>
-          <Text style={styles.numContent}>{showNum}</Text>
+          <Text style={styles.numContent}>
+            {result !== '' ? result : showNum}
+          </Text>
         </View>
       </View>
       <View style={styles.subRoot}>
