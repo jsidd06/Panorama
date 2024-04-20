@@ -7,4 +7,6 @@ export const COLORS = {
   LIGHT_BROWN: '#BE7B72',
   BLUE: '#5BBCFF',
   LIGHT_GREEN: '#B5C18E',
+  DARK_PURPLE: '#6C0345',
+  LIGHT_PURPLE: '#BC7FCD',
 };

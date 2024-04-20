@@ -29,4 +29,9 @@ export const data = [
     name: 'Quotes',
     link: 'QuotesScreen',
   },
+  {
+    id: Math.random(),
+    name: 'Calculator',
+    link: 'CalculatorScreen',
+  },
 ];

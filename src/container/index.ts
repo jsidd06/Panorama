@@ -6,3 +6,4 @@ export {default as BabyNamesScreen} from '@/container/shareContainer/screens/bab
 export {default as PlantsScreen} from '@/container/shareContainer/screens/plants/plants';
 export {default as RecipesScreen} from '@/container/shareContainer/screens/recipes/recipes';
 export {default as QuotesScreen} from '@/container/shareContainer/screens/quotes/quotes';
+export {default as CalculatorScreen} from '@/container/shareContainer/screens/calculator/calculator';
