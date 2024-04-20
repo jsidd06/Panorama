@@ -35,3 +35,12 @@ export const fetchPlantsData = async (search: string) => {
     throw error.response.data.error;
   }
 };
+
+export const fetchRecipeData = async (search: string) => {
+  try {
+    const response = await Axios.get(`recipe?query=${search}`);
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data.error;
+  }
+};

@@ -4,3 +4,4 @@ export {default as OnBoardingScreen} from '@/container/onBoardingContainer/scree
 export {default as DogsScreen} from '@/container/shareContainer/screens/dogs/dogs';
 export {default as BabyNamesScreen} from '@/container/shareContainer/screens/babyNames/babyNames';
 export {default as PlantsScreen} from '@/container/shareContainer/screens/plants/plants';
+export {default as RecipesScreen} from '@/container/shareContainer/screens/recipes/recipes';

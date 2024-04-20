@@ -18,7 +18,6 @@ import {setPlantsData} from '@/redux/featuresSlice/allDataSlice';
 const PlantsScreen = () => {
   const dispatch = useDispatch();
   const store = useSelector((state: any) => state.data.plants);
-  console.log('store', store);
   const [search, setSearch] = useState('neptune');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

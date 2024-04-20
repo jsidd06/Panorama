@@ -5,6 +5,7 @@ export interface CounterState {
   dogs: any;
   babyNames: any;
   plants: any;
+  recipes: any;
 }
 
 const initialState: CounterState = {
@@ -12,6 +13,7 @@ const initialState: CounterState = {
   dogs: null,
   babyNames: null,
   plants: null,
+  recipes: null,
 };
 
 export const AllSliceCounter = createSlice({
@@ -30,10 +32,18 @@ export const AllSliceCounter = createSlice({
     setPlantsData: (state, action) => {
       state.plants = action.payload;
     },
+    setRecipesData: (state, action) => {
+      state.recipes = action.payload;
+    },
   },
 });
 
-export const {setWeatherData, setDogsData, setBabyName, setPlantsData} =
-  AllSliceCounter.actions;
+export const {
+  setWeatherData,
+  setDogsData,
+  setBabyName,
+  setPlantsData,
+  setRecipesData,
+} = AllSliceCounter.actions;
 
 export default AllSliceCounter.reducer;

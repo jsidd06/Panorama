@@ -19,4 +19,9 @@ export const data = [
     name: 'Plants',
     link: 'PlantsScreen',
   },
+  {
+    id: Math.random(),
+    name: 'Recipes',
+    link: 'RecipesScreen',
+  },
 ];
