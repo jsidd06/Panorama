@@ -13,7 +13,7 @@ import {fetchRecipeData} from '@/services/apis/apis';
 import {useDispatch, useSelector} from 'react-redux';
 import {setRecipesData} from '@/redux/featuresSlice/allDataSlice';
 import {COLORS} from '@/themes/Colors';
-import {Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 import {IMAGES} from '@/themes/images';
 import {ErrorComp, HeaderComp, LoadingComp, SearchComp} from '@/components';
 
@@ -75,7 +75,7 @@ const RecipesScreen = () => {
                     <ListItem.Subtitle style={styles.subHeading}>
                       Ingredients:
                     </ListItem.Subtitle>
-                    <Text>{item.ingredients}</Text>
+                    <Text style={styles.content}>{item.ingredients}</Text>
                   </ListItem.Content>
                 </ListItem>
                 <ListItem>
@@ -83,7 +83,7 @@ const RecipesScreen = () => {
                     <ListItem.Subtitle style={styles.subHeading}>
                       Instructions:
                     </ListItem.Subtitle>
-                    <Text>{item.instructions}</Text>
+                    <Text style={styles.content}>{item.instructions}</Text>
                   </ListItem.Content>
                 </ListItem>
                 <ListItem>
@@ -91,7 +91,7 @@ const RecipesScreen = () => {
                     <ListItem.Subtitle style={styles.subHeading}>
                       Servings:
                     </ListItem.Subtitle>
-                    <Text>{item.servings}</Text>
+                    <Text style={styles.content}>{item.servings}</Text>
                   </ListItem.Content>
                 </ListItem>
               </Card>
@@ -121,5 +121,10 @@ const styles = StyleSheet.create({
   },
   subHeading: {
     fontWeight: '600',
+  },
+  content: {
+    fontSize: FontSize.sm,
+    color: COLORS.BLACK,
+    fontWeight: '400',
   },
 });

@@ -15,7 +15,7 @@ import {fetchQuotesData} from '@/services/apis/apis';
 import {useDispatch, useSelector} from 'react-redux';
 import {setQuotesData} from '@/redux/featuresSlice/allDataSlice';
 import {COLORS} from '@/themes/Colors';
-import {Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 import {IMAGES} from '@/themes/images';
 import {ErrorComp, HeaderComp, LoadingComp, SearchComp} from '@/components';
 
@@ -82,7 +82,7 @@ const QuotesScreen = () => {
                     <ListItem.Subtitle style={styles.subHeading}>
                       Quote:
                     </ListItem.Subtitle>
-                    <Text>{item.quote}</Text>
+                    <Text style={styles.content}>{item.quote}</Text>
                   </ListItem.Content>
                 </ListItem>
                 <ListItem>
@@ -90,7 +90,7 @@ const QuotesScreen = () => {
                     <ListItem.Subtitle style={styles.subHeading}>
                       Author:
                     </ListItem.Subtitle>
-                    <Text>{item.author}</Text>
+                    <Text style={styles.content}>{item.author}</Text>
                   </ListItem.Content>
                 </ListItem>
                 <ListItem>
@@ -98,7 +98,7 @@ const QuotesScreen = () => {
                     <ListItem.Subtitle style={styles.subHeading}>
                       Category:
                     </ListItem.Subtitle>
-                    <Text>{item.category}</Text>
+                    <Text style={styles.content}>{item.category}</Text>
                   </ListItem.Content>
                 </ListItem>
               </Card>
@@ -133,5 +133,10 @@ const styles = StyleSheet.create({
     width: MetricsSizes.MEDIUM,
     height: MetricsSizes.MEDIUM,
     resizeMode: 'contain',
+  },
+  content: {
+    fontSize: FontSize.sm,
+    color: COLORS.BLACK,
+    fontWeight: '400',
   },
 });
