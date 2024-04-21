@@ -23,7 +23,7 @@ const CalculatorScreen = () => {
         setResult(evalResult.toString());
         setShowNum('');
       } catch (error) {
-        setResult('Error: invalid input');
+        setResult('');
       }
     } else if (input === 'C') {
       setShowNum('');
