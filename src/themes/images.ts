@@ -13,4 +13,5 @@ export const IMAGES = {
   refresh: require('@/assets/images/refresh.png'),
   plants: require('@/assets/images/plants.jpg'),
   recipes: require('@/assets/images/recipes.jpg'),
+  quotes: require('@/assets/images/quotes.jpg'),
 };

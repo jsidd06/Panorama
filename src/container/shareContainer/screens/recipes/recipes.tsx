@@ -66,7 +66,7 @@ const RecipesScreen = () => {
           onPress={handleSubmit}
         />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.subRoot}>
+          <View style={[Layout.fill]}>
             {store?.map((item: any, index: number) => (
               <Card key={index}>
                 <Card.Title>{item.title}</Card.Title>
@@ -116,11 +116,10 @@ const styles = StyleSheet.create({
   root: {
     marginHorizontal: MetricsSizes.MEDIUM,
   },
-  subRoot: {
-    backgroundColor: COLORS.GREY,
-  },
   subHeading: {
     fontWeight: '600',
+    fontSize: FontSize.md,
+    color: COLORS.BLACK,
   },
   content: {
     fontSize: FontSize.sm,
