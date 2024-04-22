@@ -53,3 +53,12 @@ export const fetchQuotesData = async (search: string) => {
     throw error.response.data.error;
   }
 };
+
+export const fetchLogosData = async (search: string) => {
+  try {
+    const response = await Axios.get(`logo?name=${search}`);
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data.error;
+  }
+};

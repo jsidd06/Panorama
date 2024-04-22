@@ -7,3 +7,4 @@ export {default as PlantsScreen} from '@/container/shareContainer/screens/plants
 export {default as RecipesScreen} from '@/container/shareContainer/screens/recipes/recipes';
 export {default as QuotesScreen} from '@/container/shareContainer/screens/quotes/quotes';
 export {default as CalculatorScreen} from '@/container/shareContainer/screens/calculator/calculator';
+export {default as LogosScreen} from '@/container/shareContainer/screens/logos/logo';

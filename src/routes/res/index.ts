@@ -46,4 +46,9 @@ export const routes = [
     name: 'CalculatorScreen',
     component: ROUTES.CalculatorScreen,
   },
+  {
+    id: Math.random(),
+    name: 'LogosScreen',
+    component: ROUTES.LogosScreen,
+  },
 ];

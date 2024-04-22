@@ -9,4 +9,6 @@ export const COLORS = {
   LIGHT_GREEN: '#B5C18E',
   DARK_PURPLE: '#6C0345',
   LIGHT_PURPLE: '#BC7FCD',
+  BRINJAL: '#2B2A4C',
+  LIGHT_WHITE: '#EFECEC',
 };
