@@ -1,15 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   Alert,
-  Image,
   Platform,
   PermissionsAndroid,
-  ScrollView,
   StyleSheet,
-  Text,
   View,
-  TouchableOpacity,
-  Pressable,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ErrorComp, HeaderComp, LoadingComp, SearchComp} from '@/components';
@@ -17,8 +12,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {COLORS} from '@/themes/Colors';
 import {fetchLogosData} from '@/services/apis/apis';
 import {setLogosData} from '@/redux/featuresSlice/allDataSlice';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {Layout, MetricsSizes} from '@/themes/style';
 import RNFetchBlob from 'rn-fetch-blob';
+import LogosFrag from '../../fragments/logosFrag';
 
 const LogosScreen = () => {
   const dispatch = useDispatch();
@@ -45,7 +41,7 @@ const LogosScreen = () => {
 
   const checkPermission = async (image: any) => {
     if (Platform.OS === 'ios') {
-      downloadImage();
+      downloadImage(image);
     } else {
       try {
         const granted = await PermissionsAndroid.request(
@@ -53,6 +49,7 @@ const LogosScreen = () => {
           {
             title: 'Storage Permission Required',
             message: 'App needs access to your storage to download Photos',
+            buttonPositive: '',
           },
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
@@ -113,37 +110,7 @@ const LogosScreen = () => {
           onChangeText={(text: any) => setSearch(text)}
           value={search}
         />
-        <ScrollView>
-          <View style={[styles.container]}>
-            {store?.length > 0 ? (
-              store?.map((d: any, i: number) => (
-                <View key={i} style={styles.subCont}>
-                  <View style={[Layout.alignCenter]}>
-                    <Image style={styles.img} source={{uri: d.image}} />
-                  </View>
-                  <View style={[styles.subContent]}>
-                    <View style={[Layout.rowACenter]}>
-                      <Text style={styles.heading}>Name:-</Text>
-                      <Text style={styles.subHeading}> {d.name}</Text>
-                    </View>
-                    <View style={[Layout.rowACenter]}>
-                      <Text style={styles.heading}>Ticker:-</Text>
-                      <Text style={styles.subHeading}> {d.ticker}</Text>
-                    </View>
-                    <View style={[Layout.rowACenter]}>
-                      <Text style={styles.heading}>Download logo:-</Text>
-                      <Pressable onPress={() => checkPermission(d.image)}>
-                        <Text style={styles.subHeading}> download now </Text>
-                      </Pressable>
-                    </View>
-                  </View>
-                </View>
-              ))
-            ) : (
-              <Text style={[styles.error]}>No Logo found</Text>
-            )}
-          </View>
-        </ScrollView>
+        <LogosFrag data={store} onPress={checkPermission} />
       </View>
     </View>
   );
@@ -157,50 +124,5 @@ const styles = StyleSheet.create({
   },
   subRoot: {
     marginHorizontal: MetricsSizes.MEDIUM,
-  },
-  container: {
-    backgroundColor: COLORS.LIGHT_WHITE,
-    borderRadius: 8,
-  },
-  subCont: {
-    paddingVertical: MetricsSizes.SMALL,
-  },
-  subContent: {
-    paddingHorizontal: MetricsSizes.MEDIUM,
-    paddingVertical: MetricsSizes.MEDIUM,
-  },
-  heading: {
-    fontSize: FontSize.md,
-    color: COLORS.BLACK,
-    fontWeight: '600',
-  },
-  subHeading: {
-    fontSize: FontSize.md,
-    color: COLORS.BLACK,
-    fontWeight: '500',
-  },
-  img: {
-    width: MetricsSizes.SET150,
-    height: MetricsSizes.SET150,
-    resizeMode: 'contain',
-  },
-  error: {
-    paddingHorizontal: MetricsSizes.MEDIUM,
-    fontSize: FontSize.md,
-    color: COLORS.BLACK,
-    fontWeight: '600',
-  },
-  button: {
-    width: '70%',
-    padding: 10,
-    backgroundColor: '#00BFFF',
-    margin: 10,
-    height: 50,
-  },
-  text: {
-    color: '#fff',
-    fontSize: 20,
-    textAlign: 'center',
-    padding: 5,
   },
 });
