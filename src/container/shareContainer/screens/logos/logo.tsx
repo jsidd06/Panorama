@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ErrorComp, HeaderComp, LoadingComp, SearchComp} from '@/components';
 import {useDispatch, useSelector} from 'react-redux';
@@ -13,7 +13,7 @@ const LogosScreen = () => {
   const store = useSelector((state: any) => state.data.logos);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [search, setSearch] = useState('apple');
+  const [search, setSearch] = useState('dog');
 
   useEffect(() => {
     fetchData();
@@ -46,29 +46,31 @@ const LogosScreen = () => {
           onChangeText={(text: any) => setSearch(text)}
           value={search}
         />
-        <View style={[styles.container]}>
-          {store.length > 0 ? (
-            store?.map((d: any, i: number) => (
-              <View key={i} style={styles.subCont}>
-                <View style={[Layout.alignCenter]}>
-                  <Image style={styles.img} source={{uri: d.image}} />
-                </View>
-                <View style={[styles.subContent]}>
-                  <View style={[Layout.rowACenter]}>
-                    <Text style={styles.heading}>Name:-</Text>
-                    <Text style={styles.subHeading}> {d.name}</Text>
+        <ScrollView>
+          <View style={[styles.container]}>
+            {store.length > 0 ? (
+              store?.map((d: any, i: number) => (
+                <View key={i} style={styles.subCont}>
+                  <View style={[Layout.alignCenter]}>
+                    <Image style={styles.img} source={{uri: d.image}} />
                   </View>
-                  <View style={[Layout.rowACenter]}>
-                    <Text style={styles.heading}>Ticker:-</Text>
-                    <Text style={styles.subHeading}> {d.ticker}</Text>
+                  <View style={[styles.subContent]}>
+                    <View style={[Layout.rowACenter]}>
+                      <Text style={styles.heading}>Name:-</Text>
+                      <Text style={styles.subHeading}> {d.name}</Text>
+                    </View>
+                    <View style={[Layout.rowACenter]}>
+                      <Text style={styles.heading}>Ticker:-</Text>
+                      <Text style={styles.subHeading}> {d.ticker}</Text>
+                    </View>
                   </View>
                 </View>
-              </View>
-            ))
-          ) : (
-            <Text style={[styles.error]}>No Logo found</Text>
-          )}
-        </View>
+              ))
+            ) : (
+              <Text style={[styles.error]}>No Logo found</Text>
+            )}
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -105,8 +107,8 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   img: {
-    width: 200,
-    height: 200,
+    width: MetricsSizes.SET150,
+    height: MetricsSizes.SET150,
     resizeMode: 'contain',
   },
   error: {
