@@ -53,7 +53,9 @@ const HomeScreen = () => {
           />
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {isChanged ? (
+          {filterData.length === 0 ? (
+            <Text style={styles.noResultText}>No result found</Text>
+          ) : isChanged ? (
             <HomeCardFrag data={filterData} />
           ) : (
             <HomeListFrag data={filterData} />
@@ -93,5 +95,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginVertical: MetricsSizes.SMALL,
     paddingHorizontal: MetricsSizes.SMALL,
+  },
+  noResultText: {
+    fontSize: FontSize.md,
+    color: COLORS.WHITE,
+    textAlign: 'center',
   },
 });
