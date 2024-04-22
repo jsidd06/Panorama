@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ErrorComp, HeaderComp, LoadingComp, SearchComp} from '@/components';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
 import {fetchDogsData} from '@/services/apis/apis';
 import {useDispatch, useSelector} from 'react-redux';
@@ -126,10 +126,12 @@ const styles = StyleSheet.create({
     color: COLORS.BLACK,
     fontWeight: '500',
     textTransform: 'capitalize',
+    fontFamily: fontFamily.FSemiBold,
   },
   subHeading: {
     fontSize: FontSize.md,
     color: COLORS.BROWN,
     fontWeight: '400',
+    fontFamily: fontFamily.FRegular,
   },
 });

@@ -152,3 +152,17 @@ export const Layout = {
     alignItems: 'flex-end' as 'flex-end',
   },
 };
+
+export const fontFamily = {
+  FBlack: 'Poppins-Black',
+  FBlackItalic: 'Poppins-BlackItalic',
+  FBold: 'Poppins-Bold',
+  FBoldItalic: 'Poppins-BoldItalic',
+  FExtraBold: 'Poppins-ExtraBold',
+  FItalic: 'Poppins-Italic',
+  FLight: 'Poppins-Light',
+  FMedium: 'Poppins-Medium',
+  FMediumItalic: 'Poppins-MediumItalic',
+  FRegular: 'Poppins-Regular',
+  FSemiBold: 'Poppins-SemiBold',
+};

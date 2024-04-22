@@ -2,7 +2,7 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {COLORS} from '@/themes/Colors';
 import {useNavigation} from '@react-navigation/native';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 
 type HomeListFragProps = {
   data?: any;
@@ -38,5 +38,6 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
     fontSize: FontSize.md,
     fontWeight: '400',
+    fontFamily: fontFamily.FRegular,
   },
 });

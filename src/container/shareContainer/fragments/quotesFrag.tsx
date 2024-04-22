@@ -1,6 +1,6 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
 import {Card, ListItem} from 'react-native-elements';
 type QuotesFragProps = {
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: FontSize.md,
     color: COLORS.BLACK,
+    fontFamily: fontFamily.FRegular,
   },
   refresh: {
     width: MetricsSizes.MEDIUM,
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.sm,
     color: COLORS.BLACK,
     fontWeight: '400',
+    fontFamily: fontFamily.FMedium,
   },
   notFound: {
     paddingHorizontal: MetricsSizes.MEDIUM,
@@ -97,5 +99,6 @@ const styles = StyleSheet.create({
     fontSize: FontSize.md,
     fontWeight: '600',
     color: COLORS.BLACK,
+    fontFamily: fontFamily.FBold,
   },
 });

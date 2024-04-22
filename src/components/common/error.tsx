@@ -2,7 +2,7 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import DefaultWrapper from './defaultWrapper';
 import {COLORS} from '@/themes/Colors';
-import {FontSize, Layout} from '@/themes/style';
+import {FontSize, Layout, fontFamily} from '@/themes/style';
 import {useNavigation} from '@react-navigation/native';
 
 type ErrorCompProps = {
@@ -32,5 +32,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     textTransform: 'capitalize',
+    fontFamily: fontFamily.FSemiBold,
   },
 });

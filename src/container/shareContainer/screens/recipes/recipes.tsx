@@ -13,7 +13,7 @@ import {fetchRecipeData} from '@/services/apis/apis';
 import {useDispatch, useSelector} from 'react-redux';
 import {setRecipesData} from '@/redux/featuresSlice/allDataSlice';
 import {COLORS} from '@/themes/Colors';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 import {IMAGES} from '@/themes/images';
 import {ErrorComp, HeaderComp, LoadingComp, SearchComp} from '@/components';
 
@@ -120,10 +120,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: FontSize.md,
     color: COLORS.BLACK,
+    fontFamily: fontFamily.FRegular,
   },
   content: {
     fontSize: FontSize.sm,
     color: COLORS.BLACK,
     fontWeight: '400',
+    fontFamily: fontFamily.FMedium,
   },
 });

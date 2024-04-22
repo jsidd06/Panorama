@@ -19,7 +19,7 @@ import {
 import {IMAGES} from '@/themes/images';
 import {useDispatch, useSelector} from 'react-redux';
 import {COLORS} from '@/themes/Colors';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 import {fetchBabyNamesData} from '@/services/apis/apis';
 import {setBabyName} from '@/redux/featuresSlice/allDataSlice';
 import {ICONS} from '@/themes/icons';
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     height: 50,
     color: COLORS.BLACK,
     borderColor: COLORS.WHITE,
+    fontFamily: fontFamily.FRegular,
   },
   input: {height: 40, color: COLORS.WHITE},
   content: {backgroundColor: '#E78895', borderRadius: 8},
@@ -111,5 +112,6 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
     fontSize: FontSize.md,
     fontWeight: '500',
+    fontFamily: fontFamily.FRegular,
   },
 });

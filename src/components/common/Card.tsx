@@ -1,6 +1,6 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
 
 type CardCompProps = {
@@ -40,11 +40,13 @@ const styles = StyleSheet.create({
     fontSize: FontSize.md,
     color: COLORS.BLACK,
     fontWeight: '600',
+    fontFamily: fontFamily.FRegular,
   },
   subHeading: {
     fontSize: FontSize.md,
     color: COLORS.BROWN,
     fontWeight: '500',
+    fontFamily: fontFamily.FRegular,
   },
   subCard: {
     paddingVertical: MetricsSizes.SMALL,

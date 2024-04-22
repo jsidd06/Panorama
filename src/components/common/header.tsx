@@ -2,7 +2,7 @@ import {Pressable, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {COLORS} from '@/themes/Colors';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 import {ICONS} from '@/themes/icons';
 import Icons from './icons';
 
@@ -45,5 +45,6 @@ const styles = StyleSheet.create({
     fontSize: FontSize.md,
     fontWeight: '600',
     color: COLORS.BLACK,
+    fontFamily: fontFamily.FSemiBold,
   },
 });

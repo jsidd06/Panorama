@@ -17,7 +17,7 @@ import {COLORS} from '@/themes/Colors';
 import {IMAGES} from '@/themes/images';
 import {fetchWeatherData} from '@/services';
 import {formattedTime} from '@/helper';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 
 const WeatherScreen = () => {
   const dispatch = useDispatch();
@@ -140,12 +140,14 @@ const styles = StyleSheet.create({
     fontSize: FontSize.md,
     color: COLORS.BLACK,
     fontWeight: '600',
+    fontFamily: fontFamily.FMedium,
   },
   input: {color: COLORS.WHITE, width: 200},
   subHeading: {
     fontSize: FontSize.md,
     color: COLORS.BROWN,
     fontWeight: '500',
+    fontFamily: fontFamily.FRegular,
   },
   card: {
     backgroundColor: COLORS.GREY,

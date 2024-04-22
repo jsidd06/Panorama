@@ -4,7 +4,7 @@ import {StyleSheet, Text, Animated, Easing} from 'react-native';
 import {IMAGES} from '@/themes/images';
 import DefaultWrapper from './defaultWrapper';
 import {COLORS} from '@/themes/Colors';
-import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 
 type AnimatedProps = {
   heading?: string;
@@ -67,5 +67,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: MetricsSizes.SMALL,
     color: COLORS.WHITE,
+    fontFamily: fontFamily.FRegular,
   },
 });

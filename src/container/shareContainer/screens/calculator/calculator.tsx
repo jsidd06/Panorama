@@ -1,7 +1,7 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {HeaderComp} from '@/components';
-import {FontSize, Layout} from '@/themes/style';
+import {FontSize, Layout, fontFamily} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
 import {evaluate} from 'mathjs';
 
@@ -82,11 +82,13 @@ const styles = StyleSheet.create({
     fontSize: FontSize.lg,
     fontWeight: '600',
     color: COLORS.BLACK,
+    fontFamily: fontFamily.FRegular,
   },
   numContent: {
     fontSize: FontSize.xxl,
     fontWeight: '600',
     color: COLORS.WHITE,
+    fontFamily: fontFamily.FRegular,
   },
   container: {
     position: 'absolute',
