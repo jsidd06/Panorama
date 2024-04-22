@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.lg,
     color: COLORS.WHITE,
     fontWeight: '500',
+    fontFamily: 'Poppins-Black',
   },
   list: {
     height: 50,
