@@ -4,6 +4,8 @@ import {IMAGES} from '@/themes/images';
 import {useNavigation} from '@react-navigation/native';
 import {COLORS} from '@/themes/Colors';
 import {FontSize, Layout, MetricsSizes} from '@/themes/style';
+import {ICONS} from '@/themes/icons';
+import Icons from './icons';
 
 type HeaderCompProps = {
   title: string;
@@ -17,7 +19,7 @@ const HeaderComp = ({title, white}: HeaderCompProps) => {
       <Pressable
         onPress={() => navigation.goBack()}
         style={[styles.root, Layout.rowACenter]}>
-        <Image source={IMAGES.leftArrowW} style={styles.img} />
+        <Icons size={20} name={ICONS.leftArrow} />
         <Text style={[styles.heading, {color: COLORS.WHITE}]}>{title}</Text>
       </Pressable>
     </>

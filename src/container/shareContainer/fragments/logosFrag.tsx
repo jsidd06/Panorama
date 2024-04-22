@@ -9,7 +9,8 @@ import {
 import React from 'react';
 import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {ICONS} from '@/themes/icons';
+import IconsComp from '@/components/common/icons';
 
 type LogosFragProps = {
   data: any[];
@@ -36,11 +37,15 @@ const LogosFrag = ({data, onPress}: LogosFragProps) => {
                   <Text style={styles.subHeading}> {d.ticker}</Text>
                 </View>
                 <View style={[Layout.rowACenter]}>
-                  <Text style={styles.heading}>Download logo:-</Text>
-                  <Pressable onPress={() => onPress(d.image)}>
-                    <Text style={styles.subHeading}>
-                      download now <Icon name="rocket" size={30} color="#900" />
+                  <Text style={styles.heading}>Download logo:- </Text>
+                  <Pressable
+                    onPress={() => onPress(d.image)}
+                    style={[Layout.rowACenter]}>
+                    <Text
+                      style={[styles.subHeading, {color: COLORS.DARK_PURPLE}]}>
+                      download now
                     </Text>
+                    <IconsComp name={ICONS.download} size={20} />
                   </Pressable>
                 </View>
               </View>
