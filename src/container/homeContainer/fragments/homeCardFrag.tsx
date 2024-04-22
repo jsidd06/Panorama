@@ -28,8 +28,8 @@ export default HomeCardFrag;
 
 const styles = StyleSheet.create({
   card: {
-    width: 180,
-    height: 180,
+    width: MetricsSizes.SET150,
+    height: MetricsSizes.SET150,
     backgroundColor: COLORS.LIGHT_BROWN,
     borderRadius: 8,
     marginVertical: MetricsSizes.SMALL,
