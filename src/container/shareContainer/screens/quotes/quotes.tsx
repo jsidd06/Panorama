@@ -2,7 +2,6 @@
 import React, {useEffect, useState} from 'react';
 import {
   Alert,
-  Image,
   ImageBackground,
   Pressable,
   ScrollView,
@@ -17,7 +16,14 @@ import {setQuotesData} from '@/redux/featuresSlice/allDataSlice';
 import {COLORS} from '@/themes/Colors';
 import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 import {IMAGES} from '@/themes/images';
-import {ErrorComp, HeaderComp, LoadingComp, SearchComp} from '@/components';
+import {
+  ErrorComp,
+  HeaderComp,
+  IconsComp,
+  LoadingComp,
+  SearchComp,
+} from '@/components';
+import {ICONS} from '@/themes/icons';
 
 const QuotesScreen = () => {
   const dispatch = useDispatch();
@@ -70,7 +76,7 @@ const QuotesScreen = () => {
         <Pressable
           style={[Layout.flexEndA, {marginBottom: MetricsSizes.SMALL}]}
           onPress={handleSubmit}>
-          <Image style={styles.refresh} source={IMAGES.refresh} />
+          <IconsComp name={ICONS.refresh} size={20} color={COLORS.WHITE} />
         </Pressable>
         <ScrollView style={[Layout.fill]} showsVerticalScrollIndicator={false}>
           <View style={[Layout.fill]}>
