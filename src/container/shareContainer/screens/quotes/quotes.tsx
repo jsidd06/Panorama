@@ -80,35 +80,62 @@ const QuotesScreen = () => {
         </Pressable>
         <ScrollView style={[Layout.fill]} showsVerticalScrollIndicator={false}>
           <View style={[Layout.fill]}>
-            {store?.map((item: any, index: number) => (
-              <Card key={index}>
-                <Card.Title>{item.title}</Card.Title>
-                <ListItem>
-                  <ListItem.Content>
-                    <ListItem.Subtitle style={styles.subHeading}>
-                      Quote:
-                    </ListItem.Subtitle>
-                    <Text style={styles.content}>{item.quote}</Text>
-                  </ListItem.Content>
-                </ListItem>
-                <ListItem>
-                  <ListItem.Content>
-                    <ListItem.Subtitle style={styles.subHeading}>
-                      Author:
-                    </ListItem.Subtitle>
-                    <Text style={styles.content}>{item.author}</Text>
-                  </ListItem.Content>
-                </ListItem>
-                <ListItem>
-                  <ListItem.Content>
-                    <ListItem.Subtitle style={styles.subHeading}>
-                      Category:
-                    </ListItem.Subtitle>
-                    <Text style={styles.content}>{item.category}</Text>
-                  </ListItem.Content>
-                </ListItem>
-              </Card>
-            ))}
+            {store?.length > 0 ? (
+              store?.map((item: any, index: number) => (
+                <Card key={index}>
+                  <Card.Title>{item.title}</Card.Title>
+                  <ListItem>
+                    <ListItem.Content>
+                      <ListItem.Subtitle style={styles.subHeading}>
+                        Quote:
+                      </ListItem.Subtitle>
+                      <Text style={styles.content}>{item.quote}</Text>
+                    </ListItem.Content>
+                  </ListItem>
+                  <ListItem>
+                    <ListItem.Content>
+                      <ListItem.Subtitle style={styles.subHeading}>
+                        Author:
+                      </ListItem.Subtitle>
+                      <Text style={styles.content}>{item.author}</Text>
+                    </ListItem.Content>
+                  </ListItem>
+                  <ListItem>
+                    <ListItem.Content>
+                      <ListItem.Subtitle style={styles.subHeading}>
+                        Category:
+                      </ListItem.Subtitle>
+                      <Text style={styles.content}>{item.category}</Text>
+                    </ListItem.Content>
+                  </ListItem>
+                </Card>
+              ))
+            ) : (
+              <View style={[Layout.fillB]}>
+                <Text
+                  style={[
+                    styles.content,
+                    {
+                      paddingHorizontal: MetricsSizes.MEDIUM,
+                      paddingVertical: MetricsSizes.MEDIUM,
+                      fontSize: FontSize.md,
+                    },
+                  ]}>
+                  No result Found! Make sure you have written right category
+                  quotes [ age, alone, amazing, anger, architecture, art,
+                  attitude, beauty, best, birthday, business, car, change,
+                  communication, computers, cool, courage, dad, dating, death,
+                  design, dreams, education, environmental, equality,
+                  experience, failure, faith, family, famous, fear, fitness,
+                  food, forgiveness, freedom, friendship, funny, future, god,
+                  good, government, graduation, great, happiness, health,
+                  history, home, hope, humor, imagination, inspirational,
+                  intelligence, jealousy, knowledge, leadership, learning, legal
+                  life, love marriage, medical, men, mom, money, morning,
+                  movies, success ]
+                </Text>
+              </View>
+            )}
           </View>
         </ScrollView>
       </View>
