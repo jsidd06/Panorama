@@ -1,6 +1,6 @@
 export const ICONS = {
   download: 'arrow-collapse-down',
-  leftArrow: 'chevron-left',
+  leftArrow: 'arrow-left',
   list: 'format-list-bulleted',
   grid: 'view-grid-outline',
   refresh: 'refresh',

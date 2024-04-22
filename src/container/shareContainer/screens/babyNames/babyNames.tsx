@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   Alert,
-  Image,
   ImageBackground,
   Pressable,
   ScrollView,
@@ -10,13 +9,20 @@ import {
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {ErrorComp, HeaderComp, LoadingComp, SearchComp} from '@/components';
+import {
+  ErrorComp,
+  HeaderComp,
+  IconsComp,
+  LoadingComp,
+  SearchComp,
+} from '@/components';
 import {IMAGES} from '@/themes/images';
 import {useDispatch, useSelector} from 'react-redux';
 import {COLORS} from '@/themes/Colors';
 import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 import {fetchBabyNamesData} from '@/services/apis/apis';
 import {setBabyName} from '@/redux/featuresSlice/allDataSlice';
+import {ICONS} from '@/themes/icons';
 
 const BabyNamesScreen = () => {
   const dispatch = useDispatch();
@@ -68,7 +74,7 @@ const BabyNamesScreen = () => {
           <Pressable
             style={[Layout.flexEndA, {marginBottom: MetricsSizes.SMALL}]}
             onPress={handleSubmit}>
-            <Image style={styles.refresh} source={IMAGES.refresh} />
+            <IconsComp name={ICONS.refresh} size={20} color={COLORS.WHITE} />
           </Pressable>
           <View style={styles.content}>
             {store?.map((item: any, index: number) => (
@@ -105,10 +111,5 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
     fontSize: FontSize.md,
     fontWeight: '500',
-  },
-  refresh: {
-    width: MetricsSizes.MEDIUM,
-    height: MetricsSizes.MEDIUM,
-    resizeMode: 'contain',
   },
 });

@@ -1,6 +1,5 @@
-import {Image, Pressable, StyleSheet, Text} from 'react-native';
+import {Pressable, StyleSheet, Text} from 'react-native';
 import React from 'react';
-import {IMAGES} from '@/themes/images';
 import {useNavigation} from '@react-navigation/native';
 import {COLORS} from '@/themes/Colors';
 import {FontSize, Layout, MetricsSizes} from '@/themes/style';
@@ -19,8 +18,8 @@ const HeaderComp = ({title, white}: HeaderCompProps) => {
       <Pressable
         onPress={() => navigation.goBack()}
         style={[styles.root, Layout.rowACenter]}>
-        <Icons size={20} name={ICONS.leftArrow} />
-        <Text style={[styles.heading, {color: COLORS.WHITE}]}>{title}</Text>
+        <Icons size={20} color={COLORS.WHITE} name={ICONS.leftArrow} />
+        <Text style={[styles.heading, {color: COLORS.WHITE}]}> {title}</Text>
       </Pressable>
     </>
   ) : (
@@ -28,7 +27,7 @@ const HeaderComp = ({title, white}: HeaderCompProps) => {
       <Pressable
         onPress={() => navigation.goBack()}
         style={[styles.root, Layout.rowACenter]}>
-        <Image source={IMAGES.leftArrow} style={styles.img} />
+        <Icons size={20} color={COLORS.WHITE} name={ICONS.leftArrow} />
         <Text style={styles.heading}>{title}</Text>
       </Pressable>
     </>
@@ -42,14 +41,8 @@ const styles = StyleSheet.create({
     marginHorizontal: MetricsSizes.MEDIUM,
     marginTop: MetricsSizes.SMALL,
   },
-  img: {
-    width: 30,
-    height: 40,
-    resizeMode: 'contain',
-    marginRight: MetricsSizes.MEDIUM,
-  },
   heading: {
-    fontSize: FontSize.lg,
+    fontSize: FontSize.md,
     fontWeight: '600',
     color: COLORS.BLACK,
   },

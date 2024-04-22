@@ -1,5 +1,4 @@
 import {
-  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -8,13 +7,13 @@ import {
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {IMAGES} from '@/themes/images';
-import {AnimatedLoader, DefaultWrapper} from '@/components';
+import {AnimatedLoader, DefaultWrapper, IconsComp} from '@/components';
 import {COLORS} from '@/themes/Colors';
 import HomeCardFrag from '../fragments/homeCardFrag';
 import HomeListFrag from '../fragments/homeListFrag';
 import {FontSize, Layout, MetricsSizes} from '@/themes/style';
 import {data} from '../res';
+import {ICONS} from '@/themes/icons';
 
 const HomeScreen = () => {
   const [isChanged, setIsChanged] = useState(false);
@@ -37,9 +36,10 @@ const HomeScreen = () => {
           <AnimatedLoader noLayout={true} imgStyle={styles.img} />
           <Text style={styles.heading}>Panorama</Text>
           <Pressable onPress={handleSubmit}>
-            <Image
-              source={isChanged ? IMAGES.list : IMAGES.grid}
-              style={styles.img}
+            <IconsComp
+              color={COLORS.WHITE}
+              size={20}
+              name={isChanged ? ICONS.list : ICONS.grid}
             />
           </Pressable>
         </View>
