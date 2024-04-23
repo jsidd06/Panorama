@@ -12,4 +12,5 @@ export const COLORS = {
   BRINJAL: '#2B2A4C',
   LIGHT_WHITE: '#EFECEC',
   DARK_BLUE: '#0C2D57',
+  DANGER: '#B20600',
 };

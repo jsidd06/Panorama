@@ -21,6 +21,8 @@ const MortgageCalculatorScreen = () => {
   const [loanAmount, setLoanAmount] = useState('');
   const [interestAmount, setInterestAmount] = useState('');
   const [durationYear, setDurationYear] = useState('');
+  const [totalInterest, setTotalInterest] = useState(0);
+  const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -41,11 +43,21 @@ const MortgageCalculatorScreen = () => {
       );
       console.log('data', data);
       setLoading(false);
+      setShowResult(!showResult);
+      setTotalInterest(data.total_interest_paid);
       dispatch(setMortgageCalculator(data));
     } catch (err: any) {
       setLoading(false);
       setError(err);
     }
+  };
+
+  const clearHandler = () => {
+    setInterestAmount('');
+    setLoanAmount('');
+    setDurationYear('');
+    setInterestAmount('');
+    setShowResult(!showResult);
   };
   return (
     <View style={[styles.root, Layout.fill]}>
@@ -87,24 +99,38 @@ const MortgageCalculatorScreen = () => {
             value={durationYear}
           />
         </View>
-        <View style={[Layout.flexAEnd]}>
+        <View
+          style={[
+            loanAmount && interestAmount && durationYear
+              ? Layout.rowJCenter
+              : Layout.flexAEnd,
+          ]}>
+          {loanAmount && interestAmount && durationYear && (
+            <Pressable onPress={clearHandler} style={[Layout.alignCenter]}>
+              <Text style={[styles.btnText, {color: COLORS.DANGER}]}>
+                Clear All
+              </Text>
+            </Pressable>
+          )}
           <Pressable
             onPress={fetchData}
             style={[Layout.alignCenter, styles.btn]}>
             <Text style={styles.btnText}>Submit</Text>
           </Pressable>
         </View>
-        <View style={[styles.resultCtn]}>
-          <View style={[Layout.rowCCenter]}>
-            <Text style={styles.contentText}>Total interest paid:- </Text>
-            <Text style={styles.answer}>{store?.total_interest_paid}</Text>
+        {showResult && totalInterest ? (
+          <View style={[styles.resultCtn]}>
+            <View style={[Layout.rowCCenter]}>
+              <Text style={styles.contentText}>Total interest paid:- </Text>
+              <Text style={styles.answer}>{totalInterest}</Text>
+            </View>
+            <Pressable>
+              <Text style={[styles.answer, {color: COLORS.BLUE}]}>
+                more details
+              </Text>
+            </Pressable>
           </View>
-          <Pressable>
-            <Text style={[styles.answer, {color: COLORS.BLUE}]}>
-              more details
-            </Text>
-          </Pressable>
-        </View>
+        ) : null}
       </View>
     </View>
   );
