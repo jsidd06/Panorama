@@ -27,7 +27,7 @@ const HeaderComp = ({title, white}: HeaderCompProps) => {
       <Pressable
         onPress={() => navigation.goBack()}
         style={[styles.root, Layout.rowACenter]}>
-        <Icons size={20} color={COLORS.WHITE} name={ICONS.leftArrow} />
+        <Icons size={20} color={COLORS.BLACK} name={ICONS.leftArrow} />
         <Text style={styles.heading}>{title}</Text>
       </Pressable>
     </>
@@ -46,5 +46,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: COLORS.BLACK,
     fontFamily: fontFamily.FSemiBold,
+    paddingHorizontal: MetricsSizes.MEDIUM,
+    textAlign: 'center',
   },
 });

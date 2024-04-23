@@ -8,3 +8,4 @@ export {default as RecipesScreen} from '@/container/shareContainer/screens/recip
 export {default as QuotesScreen} from '@/container/shareContainer/screens/quotes/quotes';
 export {default as CalculatorScreen} from '@/container/shareContainer/screens/calculator/calculator';
 export {default as LogosScreen} from '@/container/shareContainer/screens/logos/logo';
+export {default as ExerciseScreen} from '@/container/shareContainer/screens/exercise/exercise';

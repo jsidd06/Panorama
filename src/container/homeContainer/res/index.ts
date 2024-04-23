@@ -39,4 +39,9 @@ export const data = [
     name: 'Find Logos',
     link: 'LogosScreen',
   },
+  {
+    id: Math.random(),
+    name: 'Exercise',
+    link: 'ExerciseScreen',
+  },
 ];

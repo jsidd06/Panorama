@@ -62,3 +62,12 @@ export const fetchLogosData = async (search: string) => {
     throw error.response.data.error;
   }
 };
+
+export const fetchExerciseData = async (search: string) => {
+  try {
+    const response = await Axios.get(`exercises?muscle=${search}`);
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data.error;
+  }
+};

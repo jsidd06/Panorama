@@ -11,4 +11,5 @@ export const COLORS = {
   LIGHT_PURPLE: '#BC7FCD',
   BRINJAL: '#2B2A4C',
   LIGHT_WHITE: '#EFECEC',
+  DARK_BLUE: '#0C2D57',
 };

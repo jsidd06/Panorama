@@ -51,4 +51,9 @@ export const routes = [
     name: 'LogosScreen',
     component: ROUTES.LogosScreen,
   },
+  {
+    id: Math.random(),
+    name: 'ExerciseScreen',
+    component: ROUTES.ExerciseScreen,
+  },
 ];
