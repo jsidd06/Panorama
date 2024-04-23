@@ -5,9 +5,10 @@ import {
   Text,
   TextInput,
   View,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
-import {ErrorComp, HeaderComp, LoadingComp} from '@/components';
+import {HeaderComp} from '@/components';
 import {Layout, MetricsSizes, fontFamily} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
 import {fetchMortgageCalculatorData} from '@/services/apis/apis';
@@ -21,7 +22,6 @@ const MortgageCalculatorScreen = () => {
   const [showResult, setShowResult] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   const fetchData = async () => {
     setLoading(true);
@@ -43,7 +43,6 @@ const MortgageCalculatorScreen = () => {
       setShowOutput(data);
     } catch (err: any) {
       setLoading(false);
-      setError(err);
     }
   };
 
@@ -145,14 +144,18 @@ const MortgageCalculatorScreen = () => {
           </Pressable>
         </View>
       </View>
-      <MortgageCalculatorFrag
-        annualPayment={annualPayment}
-        monthlyPayment={monthlyPayment}
-        moreHandler={moreHandler}
-        showMore={showMore}
-        showOutput={showOutput}
-        showResult={showResult}
-      />
+      {loading ? (
+        <ActivityIndicator size="large" color={COLORS.DANGER} />
+      ) : (
+        <MortgageCalculatorFrag
+          annualPayment={annualPayment}
+          monthlyPayment={monthlyPayment}
+          moreHandler={moreHandler}
+          showMore={showMore}
+          showOutput={showOutput}
+          showResult={showResult}
+        />
+      )}
     </View>
   );
 };
@@ -161,10 +164,10 @@ export default MortgageCalculatorScreen;
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: '#FECDA6',
+    backgroundColor: COLORS.ORANGE,
   },
   subRoot: {
-    backgroundColor: '#EEE2DE',
+    backgroundColor: COLORS.LIGHT_ORANGE,
     paddingHorizontal: MetricsSizes.MEDIUM,
     paddingVertical: MetricsSizes.MEDIUM,
     marginHorizontal: MetricsSizes.MEDIUM,

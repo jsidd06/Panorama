@@ -20,6 +20,30 @@ const MortgageCalculatorFrag = ({
   moreHandler,
   annualPayment,
 }: MortgageCalculatorFragProps) => {
+  const renderItem = (title: string, data: any) => {
+    return (
+      <View style={[styles.main]}>
+        <View style={[Layout.alignCenter]}>
+          <Text style={styles.contentText}>{title}</Text>
+        </View>
+        {data?.map((d: any, i: number) => (
+          <View key={i} style={[Layout.rowACenter]}>
+            <Text
+              style={[
+                styles.contentText,
+                {
+                  paddingHorizontal: MetricsSizes.SMALL,
+                  paddingVertical: MetricsSizes.SMALL,
+                },
+              ]}>
+              {d.title}:-{' '}
+            </Text>
+            <Text style={styles.contentText}>{d.value}</Text>
+          </View>
+        ))}
+      </View>
+    );
+  };
   return (
     <ScrollView style={[{marginBottom: MetricsSizes.SMALL}]}>
       <View style={[styles.output]}>
@@ -40,46 +64,8 @@ const MortgageCalculatorFrag = ({
         ) : null}
         {showMore ? (
           <>
-            <View style={[styles.main]}>
-              <View style={[Layout.alignCenter]}>
-                <Text style={styles.contentText}>Annual Payment</Text>
-              </View>
-              {annualPayment?.map((d: any, i: number) => (
-                <View key={i} style={[Layout.rowACenter]}>
-                  <Text
-                    style={[
-                      styles.contentText,
-                      {
-                        paddingHorizontal: MetricsSizes.SMALL,
-                        paddingVertical: MetricsSizes.SMALL,
-                      },
-                    ]}>
-                    {d.title}:-{' '}
-                  </Text>
-                  <Text style={styles.contentText}>{d.value}</Text>
-                </View>
-              ))}
-            </View>
-            <View style={[styles.main]}>
-              <View style={[Layout.alignCenter]}>
-                <Text style={styles.contentText}>Monthly Payment</Text>
-              </View>
-              {monthlyPayment?.map((d: any, i: number) => (
-                <View key={i} style={[Layout.rowACenter]}>
-                  <Text
-                    style={[
-                      styles.contentText,
-                      {
-                        paddingHorizontal: MetricsSizes.SMALL,
-                        paddingVertical: MetricsSizes.SMALL,
-                      },
-                    ]}>
-                    {d.title}:-{' '}
-                  </Text>
-                  <Text style={styles.contentText}>{d.value}</Text>
-                </View>
-              ))}
-            </View>
+            {renderItem('Annual Payment', annualPayment)}
+            {renderItem('Monthly Payment', monthlyPayment)}
           </>
         ) : null}
       </View>
@@ -96,7 +82,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   resultCtn: {
-    backgroundColor: '#EFF5F5',
+    backgroundColor: COLORS.LIGHT_GREY,
     paddingVertical: MetricsSizes.MEDIUM,
     marginVertical: MetricsSizes.MEDIUM,
     borderRadius: 4,
@@ -109,7 +95,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   main: {
-    backgroundColor: '#EFF5F5',
+    backgroundColor: COLORS.LIGHT_GREY,
     paddingVertical: MetricsSizes.MEDIUM,
     borderRadius: 4,
   },

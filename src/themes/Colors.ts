@@ -13,4 +13,7 @@ export const COLORS = {
   LIGHT_WHITE: '#EFECEC',
   DARK_BLUE: '#0C2D57',
   DANGER: '#B20600',
+  LIGHT_GREY: '#EFF5F5',
+  ORANGE: '#FECDA6',
+  LIGHT_ORANGE: '#EEE2DE',
 };
