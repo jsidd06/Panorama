@@ -9,6 +9,7 @@ export interface CounterState {
   quotes: any;
   logos: any;
   exercise: any;
+  mortgageCalculator: any;
 }
 
 const initialState: CounterState = {
@@ -20,6 +21,7 @@ const initialState: CounterState = {
   quotes: null,
   logos: null,
   exercise: null,
+  mortgageCalculator: null,
 };
 
 export const AllSliceCounter = createSlice({
@@ -50,6 +52,9 @@ export const AllSliceCounter = createSlice({
     setExerciseData: (state, action) => {
       state.exercise = action.payload;
     },
+    setMortgageCalculator: (state, action) => {
+      state.mortgageCalculator = action.payload;
+    },
   },
 });
 
@@ -62,6 +67,7 @@ export const {
   setQuotesData,
   setLogosData,
   setExerciseData,
+  setMortgageCalculator,
 } = AllSliceCounter.actions;
 
 export default AllSliceCounter.reducer;

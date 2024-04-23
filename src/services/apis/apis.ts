@@ -71,3 +71,18 @@ export const fetchExerciseData = async (search: string) => {
     throw error.response.data.error;
   }
 };
+
+export const fetchMortgageCalculatorData = async (
+  loan: string,
+  interest: string,
+  duration: string,
+) => {
+  try {
+    const response = await Axios.get(
+      `mortgagecalculator?loan_amount=${loan}&interest_rate=${interest}&duration_years=${duration}`,
+    );
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data.error;
+  }
+};

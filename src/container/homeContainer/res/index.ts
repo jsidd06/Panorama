@@ -44,4 +44,9 @@ export const data = [
     name: 'Exercise',
     link: 'ExerciseScreen',
   },
+  {
+    id: Math.random(),
+    name: 'Mortgage Calculator',
+    link: 'MortgageCalculatorScreen',
+  },
 ];
