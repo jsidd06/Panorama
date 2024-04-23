@@ -9,7 +9,7 @@ type ExerciseFragProps = {
 };
 
 const ExerciseFrag = ({data}: ExerciseFragProps) => {
-  return (
+  return data.length > 0 ? (
     <ScrollView showsVerticalScrollIndicator={false}>
       {data?.map((d: any, i: number) => (
         <Card containerStyle={styles.card} key={i}>
@@ -43,6 +43,8 @@ const ExerciseFrag = ({data}: ExerciseFragProps) => {
         </Card>
       ))}
     </ScrollView>
+  ) : (
+    <Text style={styles.notFound}>No result found!</Text>
   );
 };
 
@@ -71,5 +73,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: fontFamily.FRegular,
     color: COLORS.BLACK,
+  },
+  notFound: {
+    backgroundColor: COLORS.WHITE,
+    fontSize: 16,
+    fontWeight: '600',
+    fontFamily: fontFamily.FRegular,
+    color: COLORS.BLACK,
+    paddingHorizontal: MetricsSizes.MEDIUM,
+    borderRadius: 8,
   },
 });

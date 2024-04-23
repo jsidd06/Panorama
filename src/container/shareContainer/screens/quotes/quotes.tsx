@@ -5,6 +5,7 @@ import {
   ImageBackground,
   Pressable,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import {fetchQuotesData} from '@/services/apis/apis';
