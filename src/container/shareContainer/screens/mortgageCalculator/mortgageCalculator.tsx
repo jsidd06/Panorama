@@ -1,6 +1,7 @@
 import {
   Alert,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -10,19 +11,15 @@ import React, {useState} from 'react';
 import {HeaderComp} from '@/components';
 import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
-import {useDispatch, useSelector} from 'react-redux';
 import {fetchMortgageCalculatorData} from '@/services/apis/apis';
-import {setMortgageCalculator} from '@/redux/featuresSlice/allDataSlice';
 
 const MortgageCalculatorScreen = () => {
-  const dispatch = useDispatch();
-  const store = useSelector((state: any) => state?.data?.mortgageCalculator);
-  console.log('store', store);
   const [loanAmount, setLoanAmount] = useState('');
   const [interestAmount, setInterestAmount] = useState('');
   const [durationYear, setDurationYear] = useState('');
-  const [totalInterest, setTotalInterest] = useState(0);
+  const [showOutput, setShowOutput] = useState('');
   const [showResult, setShowResult] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -41,11 +38,10 @@ const MortgageCalculatorScreen = () => {
         interestAmount,
         durationYear,
       );
-      console.log('data', data);
+      console.log('data', showOutput);
       setLoading(false);
       setShowResult(!showResult);
-      setTotalInterest(data.total_interest_paid);
-      dispatch(setMortgageCalculator(data));
+      setShowOutput(data);
     } catch (err: any) {
       setLoading(false);
       setError(err);
@@ -59,6 +55,36 @@ const MortgageCalculatorScreen = () => {
     setInterestAmount('');
     setShowResult(!showResult);
   };
+
+  const moreHandler = () => {
+    setShowMore(!showMore);
+  };
+
+  const annualPayment = [
+    {title: 'Mortage', value: showOutput?.annual_payment?.mortgage},
+    {title: 'Property tax', value: showOutput?.annual_payment?.property_tax},
+    {
+      title: 'Home insurance',
+      value: showOutput?.annual_payment?.home_insurance,
+    },
+    {title: 'Hoa', value: showOutput?.annual_payment?.hoa},
+    {title: 'Total', value: showOutput?.annual_payment?.total},
+  ];
+
+  const monthlyPayment = [
+    {
+      title: 'Annual home ins',
+      value: showOutput?.monthly_payment?.annual_home_ins,
+    },
+    {title: 'Hoa', value: showOutput?.monthly_payment?.hoa},
+    {title: 'Mortgage', value: showOutput?.monthly_payment?.mortgage},
+    {
+      title: 'Property tax',
+      value: showOutput?.monthly_payment?.property_tax,
+    },
+
+    {title: 'Total', value: showOutput?.monthly_payment?.total},
+  ];
   return (
     <View style={[styles.root, Layout.fill]}>
       <HeaderComp title="Mortgage Calculator" />
@@ -118,20 +144,70 @@ const MortgageCalculatorScreen = () => {
             <Text style={styles.btnText}>Submit</Text>
           </Pressable>
         </View>
-        {showResult && totalInterest ? (
-          <View style={[styles.resultCtn]}>
-            <View style={[Layout.rowCCenter]}>
-              <Text style={styles.contentText}>Total interest paid:- </Text>
-              <Text style={styles.answer}>{totalInterest}</Text>
-            </View>
-            <Pressable>
-              <Text style={[styles.answer, {color: COLORS.BLUE}]}>
-                more details
-              </Text>
-            </Pressable>
-          </View>
-        ) : null}
       </View>
+      <ScrollView style={[{marginBottom: MetricsSizes.SMALL}]}>
+        <View style={[styles.output]}>
+          {showResult && showOutput ? (
+            <View style={[styles.resultCtn]}>
+              <View style={[Layout.rowCCenter]}>
+                <Text style={styles.contentText}>Total interest paid:- </Text>
+                <Text style={styles.answer}>
+                  {showOutput?.total_interest_paid}
+                </Text>
+              </View>
+              <Pressable onPress={moreHandler}>
+                <Text style={[styles.answer, {color: COLORS.BLUE}]}>
+                  more details
+                </Text>
+              </Pressable>
+            </View>
+          ) : null}
+          {showMore ? (
+            <>
+              <View style={[styles.main]}>
+                <View style={[Layout.alignCenter]}>
+                  <Text style={styles.contentText}>Annual Payment</Text>
+                </View>
+                {annualPayment?.map((d: any, i: number) => (
+                  <View key={i} style={[Layout.rowACenter]}>
+                    <Text
+                      style={[
+                        styles.contentText,
+                        {
+                          paddingHorizontal: MetricsSizes.SMALL,
+                          paddingVertical: MetricsSizes.SMALL,
+                        },
+                      ]}>
+                      {d.title}:-{' '}
+                    </Text>
+                    <Text style={styles.contentText}>{d.value}</Text>
+                  </View>
+                ))}
+              </View>
+              <View style={[styles.main]}>
+                <View style={[Layout.alignCenter]}>
+                  <Text style={styles.contentText}>Monthly Payment</Text>
+                </View>
+                {monthlyPayment?.map((d: any, i: number) => (
+                  <View key={i} style={[Layout.rowACenter]}>
+                    <Text
+                      style={[
+                        styles.contentText,
+                        {
+                          paddingHorizontal: MetricsSizes.SMALL,
+                          paddingVertical: MetricsSizes.SMALL,
+                        },
+                      ]}>
+                      {d.title}:-{' '}
+                    </Text>
+                    <Text style={styles.contentText}>{d.value}</Text>
+                  </View>
+                ))}
+              </View>
+            </>
+          ) : null}
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -196,5 +272,13 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.FMedium,
     lineHeight: 20,
     textAlign: 'center',
+  },
+  main: {
+    backgroundColor: '#EFF5F5',
+    paddingVertical: MetricsSizes.MEDIUM,
+    borderRadius: 4,
+  },
+  output: {
+    paddingHorizontal: MetricsSizes.MEDIUM,
   },
 });

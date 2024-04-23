@@ -10,7 +10,7 @@ type ExerciseFragProps = {
 };
 
 const ExerciseFrag = ({data}: ExerciseFragProps) => {
-  return data.length > 0 ? (
+  return data?.length > 0 ? (
     <ScrollView showsVerticalScrollIndicator={false}>
       {data?.map((d: any, i: number) => (
         <Card containerStyle={styles.card} key={i}>
