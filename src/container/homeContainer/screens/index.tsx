@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Pressable,
   ScrollView,
@@ -19,16 +20,27 @@ const HomeScreen = () => {
   const [isChanged, setIsChanged] = useState(false);
   const [search, setSearch] = useState('');
   const [filterData, setFilterData] = useState([]);
+  const [sortingData, setSortingData] = useState([]);
+
   const handleSubmit = () => {
     setIsChanged(!isChanged);
   };
 
   useEffect(() => {
-    const filtered: any = data.filter(item =>
+    let filtered: any = data.filter(item =>
       item.name.toLowerCase().includes(search.toLowerCase()),
     );
+
+    filterData.sort((a: any, b: any) => a.name.localeCompare(b.name));
     setFilterData(filtered);
+    setSortingData(filtered);
   }, [search]);
+
+  useEffect(() => {
+    setSortingData(prev =>
+      [...prev].sort((a: any, b: any) => a.name.localeCompare(b.name)),
+    );
+  }, []);
   return (
     <DefaultWrapper style={[Layout.fill]}>
       <View style={[Layout.fill, styles.container]}>
@@ -56,9 +68,9 @@ const HomeScreen = () => {
           {filterData.length === 0 ? (
             <Text style={styles.noResultText}>No result found</Text>
           ) : isChanged ? (
-            <HomeCardFrag data={filterData} />
+            <HomeCardFrag data={sortingData} />
           ) : (
-            <HomeListFrag data={filterData} />
+            <HomeListFrag data={sortingData} />
           )}
         </ScrollView>
       </View>

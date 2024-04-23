@@ -10,6 +10,7 @@ type HomeCardFragProps = {
 
 const HomeCardFrag = ({data}: HomeCardFragProps) => {
   const navigation = useNavigation();
+
   return (
     <View style={[Layout.wrapB]}>
       {data.map((d: any) => (
