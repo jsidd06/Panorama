@@ -3,6 +3,7 @@ import React from 'react';
 import {FontSize, MetricsSizes, fontFamily} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
 import {Card, ListItem} from 'react-native-elements';
+import NotFoundComp from '@/components/common/notFound';
 
 type ExerciseFragProps = {
   data: any[];
@@ -44,7 +45,7 @@ const ExerciseFrag = ({data}: ExerciseFragProps) => {
       ))}
     </ScrollView>
   ) : (
-    <Text style={styles.notFound}>No result found!</Text>
+    <NotFoundComp message="No result found!" />
   );
 };
 
@@ -73,14 +74,5 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontFamily: fontFamily.FRegular,
     color: COLORS.BLACK,
-  },
-  notFound: {
-    backgroundColor: COLORS.WHITE,
-    fontSize: 16,
-    fontWeight: '600',
-    fontFamily: fontFamily.FRegular,
-    color: COLORS.BLACK,
-    paddingHorizontal: MetricsSizes.MEDIUM,
-    borderRadius: 8,
   },
 });
