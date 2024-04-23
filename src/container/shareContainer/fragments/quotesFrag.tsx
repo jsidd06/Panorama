@@ -3,17 +3,18 @@ import React from 'react';
 import {FontSize, Layout, MetricsSizes, fontFamily} from '@/themes/style';
 import {COLORS} from '@/themes/Colors';
 import {Card, ListItem} from 'react-native-elements';
+import NotFoundComp from '@/components/common/notFound';
 type QuotesFragProps = {
   data: any[];
 };
 
 const QuotesFrag = ({data}: QuotesFragProps) => {
-  return (
+  return data ? (
     <ScrollView style={[Layout.fill]} showsVerticalScrollIndicator={false}>
       <View style={[Layout.fill]}>
         {data?.length > 0 ? (
           data?.map((item: any, index: number) => (
-            <Card key={index}>
+            <Card containerStyle={styles.card} key={index}>
               <Card.Title>{item.title}</Card.Title>
               <ListItem>
                 <ListItem.Content>
@@ -70,12 +71,19 @@ const QuotesFrag = ({data}: QuotesFragProps) => {
         )}
       </View>
     </ScrollView>
+  ) : (
+    <NotFoundComp message="Not result found" />
   );
 };
 
 export default QuotesFrag;
 
 const styles = StyleSheet.create({
+  card: {
+    margin: 0,
+    marginBottom: MetricsSizes.MEDIUM,
+    borderRadius: 8,
+  },
   subHeading: {
     fontWeight: '600',
     fontSize: FontSize.md,
