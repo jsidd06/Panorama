@@ -17,6 +17,9 @@ const CalculatorScreen = () => {
   const [result, setResult] = useState('');
 
   const handleSubmit = (input: string) => {
+    const lastChar = showNum.slice(-1);
+    const isOperator = ['+', '-', '*', '/'].includes(lastChar);
+
     if (input === '=') {
       try {
         const evalResult = evaluate(showNum);
@@ -28,6 +31,8 @@ const CalculatorScreen = () => {
     } else if (input === 'C') {
       setShowNum('');
       setResult('');
+    } else if (isOperator && ['+', '-', '*', '/'].includes(input)) {
+      return;
     } else {
       setShowNum(showNum + input);
     }
@@ -38,7 +43,9 @@ const CalculatorScreen = () => {
       <View style={styles.root}>
         <View style={styles.container}>
           <Text style={styles.numContent}>
-            {result !== '' ? result : showNum}
+            <Text style={styles.numContent}>
+              {result !== '' ? result : showNum}
+            </Text>
           </Text>
         </View>
       </View>
